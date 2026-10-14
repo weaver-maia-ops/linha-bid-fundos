@@ -27,7 +27,7 @@ const FUNDS = {
 const UFNOME = {AC:'Acre',AM:'Amazonas',AP:'Amapá',MA:'Maranhão',MT:'Mato Grosso',PA:'Pará',RO:'Rondônia',RR:'Roraima',TO:'Tocantins',AL:'Alagoas',BA:'Bahia',CE:'Ceará',PB:'Paraíba',PE:'Pernambuco',PI:'Piauí',RN:'Rio Grande do Norte',SE:'Sergipe',DF:'Distrito Federal',GO:'Goiás',MS:'Mato Grosso do Sul'};
 
 const $ = id => document.getElementById(id);
-const st = {fund:null, imp:null};
+const st = {fund:'FDA', imp:null};
 const fmtPct = (x,d=2) => (x*100).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})+'%';
 const fmtM = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fmtR = x => 'R$ '+fmtM(x)+' mi';
@@ -241,7 +241,7 @@ async function boot(){
     const ack = $('ackParams'); if (ack) ack.textContent = `Parâmetros de ${mesAno(PARAMS.tlp_pre.mes_ref)}.`;
   };
   paint();
-  showBlank('Selecione um fundo para iniciar a simulação.');
+  setFund('FDA');
   document.dispatchEvent(new CustomEvent('sim:ready', {detail: PARAMS}));
   try{
     const f = await ipcaFocus();
