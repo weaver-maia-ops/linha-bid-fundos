@@ -247,6 +247,8 @@ table.deadlines tbody tr:nth-child(even){background:var(--bone-light)}
 .sim .foot ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;margin-top:8px}
 .sim-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
 .ack{font-size:12.5px;color:var(--muted)}
+.sim-notice{margin-top:18px;padding:14px 16px;border-left:4px solid var(--amber);background:var(--amber-soft);color:var(--green-deep);font-size:13.5px;line-height:1.5}
+.sim-notice b{font-family:var(--f-head);font-weight:600}
 
 /* avisos */
 .disclaimer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
@@ -456,6 +458,9 @@ details.more .tbl-wrap{margin-top:14px}
         <button type="button" data-fund="FDCO" aria-pressed="false">FDCO<small>Centro-Oeste · Sudeco</small></button>
       </div>
       <span class="ack"><span id="ackParams">Carregando parâmetros.</span> Resultado indicativo. <a href="#avisos">Termos da simulação</a></span>
+    </div>
+    <div class="sim-notice" role="note">
+      <b>Resultado indicativo.</b> Este simulador pode conter distorções e não substitui a análise de enquadramento, crédito ou taxa aplicável. A taxa efetiva deve ser confirmada com os bancos ou agentes operadores e com a superintendência regional competente. <a href="#avisos">Consulte os termos da simulação.</a>
     </div>
 
     <div class="grid">
