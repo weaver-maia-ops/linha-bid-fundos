@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Linha BID para os Fundos de Desenvolvimento Regional | Weaver Advisory</title>
+<meta name="description" content="US$ 500 milhões do BID para o FDA, o FDNE e o FDCO financiarem infraestrutura privada no Norte, Nordeste e Centro-Oeste. Condições, acesso e simulador de taxas.">
+<meta property="og:title" content="Linha BID para os Fundos de Desenvolvimento Regional">
+<meta property="og:description" content="Crédito de longo prazo, em reais, para transporte, logística, água e saneamento no Norte, Nordeste e Centro-Oeste.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap">
+<style>
+
+/* Layout: página editorial no padrão Weaver (faixas escuras e claras alternadas), terminando no simulador */
+:root{
+  --charcoal:#1f201c; --charcoal-2:#2a2b26;
+  --green-deep:#223327; --green:#45674e; --green-mid:#7f9483; --green-soft:#dfe5dc;
+  --bone:#dad7cd; --bone-light:#f6f5f0; --paper:#ffffff;
+  --mauve:#776871; --slate:#343b4e; --amber:#e98a15; --amber-soft:#fbe8cf;
+  --warn:#9a6a00; --warn-soft:#fbf0d2;
+  /* tokens usados pelo simulador */
+  --ink:var(--green-deep); --muted:#6b6f68; --line:var(--bone); --accent:var(--amber); --accent-soft:var(--amber-soft);
+  --river:var(--green); --river-soft:var(--green-soft); --surface:var(--paper); --sunk:#efeee8;
+  --f-head:"Jost","Avenir Next","Avenir","Futura","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-num:Georgia,"Times New Roman",serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--f-body);font-size:15.5px;line-height:1.6;color:var(--green-deep);background:var(--bone-light);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+a{color:var(--green)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.container{max-width:1200px;margin:0 auto;padding-inline:28px}
+@media (max-width:600px){.container{padding-inline:18px}}
+h1,h2,h3,h4{font-family:var(--f-head);font-weight:500;line-height:1.15;text-wrap:balance;letter-spacing:-.005em}
+.kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--green-mid)}
+.dark .kicker{color:var(--amber-soft)}
+p{max-width:68ch}
+
+/* navegação */
+.nav{position:sticky;top:0;z-index:20;background:rgba(31,32,28,.96);backdrop-filter:saturate(1.2) blur(6px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:58px;flex-wrap:wrap}
+.brand{font-family:var(--f-head);font-size:20px;font-weight:500;letter-spacing:.02em;color:#fff;text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.brand small{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-mid);font-weight:500}
+.nav ul{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+.nav ul a{color:rgba(255,255,255,.78);text-decoration:none;font-size:13px;letter-spacing:.04em}
+.nav ul a:hover{color:#fff}
+@media (max-width:760px){.nav ul{gap:14px;padding-bottom:10px}.nav ul a{font-size:12px}}
+
+/* hero */
+.hero{background:var(--charcoal);color:#fff;padding-block:84px 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 30%,rgba(69,103,78,.45),transparent 70%),radial-gradient(40% 60% at 70% 90%,rgba(127,148,131,.18),transparent 70%);pointer-events:none}
+.hero .container{position:relative}
+.hero h1{font-size:clamp(2.1rem,5vw,3.6rem);max-width:17ch;margin-top:14px}
+.hero .lede{font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(255,255,255,.8);margin-top:20px;max-width:60ch;font-weight:300}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-block;font-family:var(--f-body);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;text-decoration:none;padding:13px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer}
+.btn-amber{background:var(--amber);color:var(--charcoal)}
+.btn-amber:hover{background:var(--amber-soft)}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px;border-top:1px solid rgba(255,255,255,.14)}
+.fact{padding:22px 20px 26px 0;border-right:1px solid rgba(255,255,255,.14)}
+.fact+.fact{padding-left:20px}
+.fact:last-child{border-right:0}
+.fact .n{font-family:var(--f-num);font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.05;color:#fff}
+.fact .l{font-size:12.5px;color:rgba(255,255,255,.66);margin-top:8px;line-height:1.45}
+@media (max-width:820px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact:nth-child(2){border-right:0}.fact:nth-child(3){padding-left:0}.fact:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}}
+
+/* seções */
+section.band{padding-block:84px}
+section.band.dark{background:var(--charcoal);color:#fff}
+section.band.white{background:var(--paper)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;align-items:end;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.sec-head p{color:var(--muted);font-size:1.02rem}
+.dark .sec-head p{color:rgba(255,255,255,.72)}
+@media (max-width:820px){.sec-head{grid-template-columns:minmax(0,1fr);gap:16px}}
+
+/* fundos */
+.funds-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.funds-grid{grid-template-columns:minmax(0,1fr)}}
+.fund{background:var(--paper);border:1px solid var(--bone);display:flex;flex-direction:column}
+.fund .top{background:var(--green-deep);color:#fff;padding:22px 24px}
+.fund .top .code{font-family:var(--f-head);font-size:30px;font-weight:500;letter-spacing:.02em}
+.fund .top .name{font-size:13px;color:rgba(255,255,255,.75)}
+.fund .body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.fund dl{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.fund dt{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.fund dd{font-size:14px;line-height:1.5}
+.fund .nums{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--bone);margin-top:auto;padding-top:14px;gap:12px}
+.fund .nums b{display:block;font-family:var(--f-num);font-size:20px;font-weight:400;color:var(--green)}
+.fund .nums span{font-size:11.5px;color:var(--muted);line-height:1.35;display:block}
+.note-src{font-size:12px;color:var(--muted);margin-top:18px}
+
+/* arquitetura */
+.arch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid rgba(255,255,255,.16)}
+.arch .node{padding:22px 20px;border-right:1px solid rgba(255,255,255,.16);position:relative}
+.arch .node:last-child{border-right:0}
+.arch .who{font-family:var(--f-head);font-size:19px;font-weight:500}
+.arch .role{font-size:13.5px;color:rgba(255,255,255,.74);margin-top:8px;line-height:1.5}
+.arch .tag{display:inline-block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber-soft);margin-bottom:8px;font-weight:600}
+.arch .node:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;background:var(--charcoal);border-top:1px solid rgba(255,255,255,.3);border-right:1px solid rgba(255,255,255,.3);transform:translateY(-50%) rotate(45deg);z-index:1}
+@media (max-width:900px){.arch{grid-template-columns:minmax(0,1fr)}.arch .node{border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}.arch .node:last-child{border-bottom:0}.arch .node:not(:last-child)::after{right:auto;left:28px;top:auto;bottom:-7px;transform:rotate(135deg)}}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid rgba(255,255,255,.16)}
+.term{padding:20px 20px 20px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.term:nth-child(3n+2),.term:nth-child(3n+3){padding-left:20px;border-left:1px solid rgba(255,255,255,.16)}
+.term .k{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green-mid);font-weight:600}
+.term .v{font-family:var(--f-num);font-size:21px;margin-top:6px}
+.term .d{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px;line-height:1.45}
+@media (max-width:820px){.terms{grid-template-columns:minmax(0,1fr)}.term:nth-child(n){padding-left:0;border-left:0}}
+
+/* linha BID */
+.bid-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px}
+@media (max-width:900px){.bid-grid{grid-template-columns:minmax(0,1fr);gap:32px}}
+.bid-grid h3{font-size:1.3rem;margin-bottom:12px}
+.bid-grid p+p{margin-top:12px}
+.comp{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--bone);margin-top:18px}
+.comp li{list-style:none;display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--bone)}
+.comp .c{font-family:var(--f-head);font-size:15px;font-weight:600;color:var(--green)}
+.comp .c small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.flow{background:var(--bone-light);border:1px solid var(--bone);padding:22px 24px}
+.flow ol{list-style:none;counter-reset:f;display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.flow li{counter-increment:f;position:relative;padding-left:38px;font-size:14px}
+.flow li::before{content:counter(f);position:absolute;left:0;top:-3px;width:26px;height:26px;border-radius:50%;background:var(--green-deep);color:#fff;font-family:var(--f-num);font-size:13px;display:flex;align-items:center;justify-content:center}
+.sectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:44px}
+@media (max-width:900px){.sectors{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.sectors{grid-template-columns:minmax(0,1fr)}}
+.sector{border-top:3px solid var(--amber);background:var(--bone-light);padding:18px 18px 20px}
+.sector h4{font-size:1.05rem;margin-bottom:8px}
+.sector p{font-size:13.5px;color:#4a4f49}
+.callout{margin-top:36px;background:var(--green-deep);color:#fff;padding:24px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.callout p{color:rgba(255,255,255,.82);font-size:14.5px}
+.callout b{color:#fff}
+@media (max-width:700px){.callout{grid-template-columns:minmax(0,1fr)}}
+
+/* processo */
+.steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;border-top:2px solid var(--green-deep)}
+.step{padding:18px 14px 0 0;position:relative}
+.step .no{font-family:var(--f-num);font-size:28px;color:var(--amber);line-height:1}
+.step h4{font-size:15px;margin-top:10px}
+.step p{font-size:12.8px;color:var(--muted);margin-top:6px;line-height:1.45}
+.step .who{display:inline-block;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--green);font-weight:600;margin-top:8px}
+@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;border-top:0}.step{border-top:2px solid var(--green-deep)}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.tbl-wrap{overflow-x:auto;margin-top:40px;border:1px solid var(--bone);background:var(--paper)}
+table.deadlines{border-collapse:collapse;width:100%;min-width:680px;font-size:13.5px}
+table.deadlines th,table.deadlines td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--bone);vertical-align:top}
+table.deadlines thead th{background:var(--green-deep);color:#fff;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+table.deadlines td.n{font-family:var(--f-num);white-space:nowrap}
+table.deadlines tbody tr:nth-child(even){background:var(--bone-light)}
+
+/* ======== simulador (escopo .sim) ======== */
+.sim{color:var(--ink)}
+.sim .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.sim .funds{display:inline-flex;border:1px solid var(--bone);background:var(--paper);flex-wrap:wrap}
+.sim .funds button{font:500 15px var(--f-head);border:0;background:transparent;color:var(--muted);padding:10px 18px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;min-width:8.5rem;text-align:left}
+.sim .funds button small{font:400 11px var(--f-body);color:var(--muted)}
+.sim .funds button+button{border-left:1px solid var(--bone)}
+.sim .funds button[aria-pressed="true"]{background:var(--green-deep);color:#fff}
+.sim .funds button[aria-pressed="true"] small{color:rgba(255,255,255,.75)}
+.sim .grid{display:grid;grid-template-columns:minmax(0,370px) minmax(0,1fr);gap:22px;align-items:start;margin-top:22px}
+@media (max-width:900px){.sim .grid{grid-template-columns:minmax(0,1fr)}}
+.sim .panel{background:var(--paper);border:1px solid var(--bone);padding:18px}
+.sim form.panel{display:flex;flex-direction:column;gap:18px;position:sticky;top:74px}
+@media (max-width:900px){.sim form.panel{position:static}}
+.sim fieldset{border:0;display:flex;flex-direction:column;gap:10px}
+.sim legend{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600;margin-bottom:8px}
+.sim label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500}
+.sim label .hint{font-weight:400;color:var(--muted);font-size:11.5px;line-height:1.4}
+.sim select,.sim input{font:inherit;font-size:14px;color:var(--ink);background:var(--bone-light);border:1px solid var(--bone);border-radius:2px;padding:.48rem .55rem;width:100%;min-width:0}
+.sim input.num{font-family:var(--f-num)}
+.sim .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sim .seg{display:flex;border:1px solid var(--bone)}
+.sim .seg button{flex:1;font:500 13px var(--f-body);background:var(--bone-light);color:var(--muted);border:0;padding:.45rem;cursor:pointer}
+.sim .seg button+button{border-left:1px solid var(--bone)}
+.sim .seg button[aria-pressed="true"]{background:var(--green);color:#fff}
+.sim .setor-desc{font-size:12px;color:#4d524c;background:var(--sunk);padding:.55rem .65rem;line-height:1.45}
+.sim .prio{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12.5px}
+.sim .pill{display:inline-flex;align-items:center;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+.sim .pill.p{background:var(--green-soft);color:var(--green-deep)}
+.sim .pill.d{background:var(--amber-soft);color:#8a4f05}
+.sim .pill.t{background:var(--green-deep);color:#fff}
+.sim .pill.s{background:var(--sunk);color:var(--muted)}
+.sim details.prem summary{cursor:pointer;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim details.prem[open] summary{margin-bottom:10px}
+.sim .results{display:flex;flex-direction:column;gap:18px;min-width:0}
+.sim .hero2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);padding:0;overflow:hidden}
+@media (max-width:640px){.sim .hero2{grid-template-columns:minmax(0,1fr)}}
+.sim .hero2 .rate{padding:22px;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--bone)}
+@media (max-width:640px){.sim .hero2 .rate{border-right:0;border-bottom:1px solid var(--bone)}}
+.sim .eyebrow{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim .bigrate{font-family:var(--f-num);font-size:clamp(2.2rem,5vw,3.2rem);line-height:1;color:var(--green-deep)}
+.sim .bigrate .ix{font-family:var(--f-head);font-size:.42em;color:var(--muted);margin-right:.15em}
+.sim .bigrate .pa{font-family:var(--f-head);font-size:.36em;color:var(--muted)}
+.sim .formula{font-family:var(--f-mono);font-size:12px;color:var(--muted);background:var(--sunk);padding:.5rem .6rem;overflow-x:auto;white-space:nowrap}
+.sim .formula b{color:var(--ink);font-weight:600}
+.sim .hero2 .enq{padding:22px;display:flex;flex-direction:column;gap:12px;background:var(--bone-light)}
+.sim .typegrid{display:grid;grid-template-columns:auto 1fr 1fr;font-size:12.5px;border:1px solid var(--bone);background:var(--paper)}
+.sim .typegrid div{padding:.35rem .55rem;border-top:1px solid var(--bone)}
+.sim .typegrid div:nth-child(-n+3){border-top:0;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sim .typegrid .on{background:var(--green-deep);color:#fff}
+.sim .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0}
+@media (max-width:760px){.sim .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sim .kpi{padding:14px 16px;border-left:1px solid var(--bone);display:flex;flex-direction:column;gap:3px;min-width:0}
+.sim .kpi:first-child{border-left:0}
+@media (max-width:760px){.sim .kpi:nth-child(3){border-left:0}.sim .kpi:nth-child(n+3){border-top:1px solid var(--bone)}}
+.sim .kpi .k{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim .kpi .v{font-family:var(--f-num);font-size:1.3rem;color:var(--green-deep);overflow-wrap:anywhere}
+.sim .kpi .s{font-size:11.5px;color:var(--muted)}
+.sim .capbar{display:flex;height:34px;overflow:hidden;margin:10px 0 8px;background:var(--sunk)}
+.sim .capbar div{display:flex;align-items:center;justify-content:center;font:600 12px var(--f-body);color:#fff;white-space:nowrap;overflow:hidden;min-width:0}
+.sim .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted)}
+.sim .legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.sim h2{font-size:1.15rem}
+.sim .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:760px){.sim .two{grid-template-columns:minmax(0,1fr)}}
+.sim .split{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.sim .split .line{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;border-bottom:1px dashed var(--bone);padding-bottom:6px}
+.sim .split .line:last-child{border-bottom:0}
+.sim .alerts{display:flex;flex-direction:column;gap:8px}
+.sim .alert{font-size:13px;padding:.6rem .75rem;background:var(--warn-soft);border-left:3px solid var(--warn)}
+.sim .alert.info{background:var(--green-soft);border-left-color:var(--green)}
+.sim .chartbox{overflow-x:auto}
+.sim svg text{font-family:var(--f-body);font-size:10px;fill:var(--muted)}
+.sim .tablebox{overflow-x:auto;margin-top:10px;max-height:420px;overflow-y:auto;border:1px solid var(--bone)}
+.sim table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:620px}
+.sim th,.sim td{padding:.4rem .6rem;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sim td{font-family:var(--f-num)}
+.sim th{position:sticky;top:0;background:var(--sunk);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sim th:first-child,.sim td:first-child{text-align:left}
+.sim tbody tr:nth-child(even){background:var(--bone-light)}
+.sim tbody tr.grace td{color:var(--muted)}
+.sim .secthead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.sim .muted{color:var(--muted)}
+.sim .foot{font-size:12.5px;color:var(--muted)}
+.sim .foot ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.sim-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.ack{font-size:12.5px;color:var(--muted)}
+
+/* avisos */
+.disclaimer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+@media (max-width:820px){.disclaimer{grid-template-columns:minmax(0,1fr)}}
+.disclaimer h3{font-size:1.15rem;margin-bottom:12px}
+.disclaimer ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#454a44}
+.disclaimer li{max-width:68ch}
+.sources{margin-top:36px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--bone);padding-top:20px}
+.sources ul{columns:2;column-gap:40px;padding-left:1rem;margin-top:8px}
+.sources li{margin-bottom:6px;break-inside:avoid}
+@media (max-width:700px){.sources ul{columns:1}}
+footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-block:40px;font-size:13px}
+footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:flex-end}
+footer a{color:#fff}
+footer .brand{font-size:22px}
+
+/* ---- ajustes da versão concisa ---- */
+section.band{padding-block:72px}
+.hero{padding-block:76px 0}
+.hero h1{max-width:20ch}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:12.5px;color:rgba(255,255,255,.75)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block}
+.sec-head{margin-bottom:36px}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.16)}
+.role{padding:20px 22px 22px 0}
+.role+.role{padding-left:22px;border-left:1px solid rgba(255,255,255,.16)}
+.role .k{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber-soft);font-weight:600}
+.role h3{font-size:1.25rem;margin-top:6px}
+.role p{font-size:13.5px;color:rgba(255,255,255,.74);margin-top:6px}
+@media (max-width:820px){.roles{grid-template-columns:minmax(0,1fr)}.role+.role{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.16)}}
+.who-wrap{overflow-x:auto;margin-top:28px}
+table.who{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+table.who th,table.who td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.16);vertical-align:top}
+table.who thead th{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green-mid);font-weight:600}
+table.who td:first-child{font-family:var(--f-head);font-size:20px;font-weight:500;white-space:nowrap}
+table.who td small{display:block;font-family:var(--f-body);font-size:12px;color:rgba(255,255,255,.6);font-weight:400}
+table.who td{color:rgba(255,255,255,.86)}
+.cond-wrap{overflow-x:auto;border:1px solid var(--bone);background:var(--paper)}
+table.cond{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+table.cond th,table.cond td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--bone);vertical-align:top}
+table.cond tr:last-child th,table.cond tr:last-child td{border-bottom:0}
+table.cond th{width:30%;background:var(--green-deep);color:#fff;font-weight:500;font-family:var(--f-head);font-size:15px}
+table.cond td b{font-family:var(--f-num);font-weight:400;font-size:17px;color:var(--green-deep)}
+.steps5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--green-deep)}
+.steps5 .step{padding:18px 16px 0 0}
+@media (max-width:900px){.steps5{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;border-top:0}.steps5 .step{border-top:2px solid var(--green-deep)}}
+@media (max-width:520px){.steps5{grid-template-columns:minmax(0,1fr)}}
+details.more{margin-top:28px}
+details.more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--green)}
+details.more .tbl-wrap{margin-top:14px}
+.links3{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:13.5px}
+.param-status{font-size:12px;color:var(--muted);margin-top:14px}
+.weaver-role{margin-top:28px;padding:18px 22px;border-left:3px solid var(--green);background:var(--paper);font-size:14px;max-width:none}
+.disclaimer ul{font-size:13px}
+.nav .container{padding-block:8px}
+.brand{align-items:center;gap:16px}
+.brand .logo{height:44px;width:auto;display:block}
+.brand .slogan{font-family:var(--f-head);font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.72);font-weight:400;max-width:22ch;line-height:1.3}
+.logo-foot{height:46px;width:auto;display:block}
+@media (max-width:760px){.brand .logo{height:32px}.brand .slogan{font-size:11px}}
+@media (max-width:420px){.brand .slogan{display:none}}
+@media (max-width:760px){.nav{position:static}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Seções">
+  <div class="container">
+    <a class="brand" href="#inicio" aria-label="Weaver Advisory, início"><img class="logo" src="assets/logo.png" alt="Weaver Advisory" width="400" height="172"><span class="slogan">Bringing Investments to Emerging Markets</span></a>
+    <ul>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#quem">Quem faz o quê</a></li>
+      <li><a href="#condicoes">Condições</a></li>
+      <li><a href="#acesso">Como acessar</a></li>
+      <li><a href="#simulador">Simulador</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="container">
+    <div class="kicker">Linha BID · Fundos de Desenvolvimento Regional</div>
+    <h1>US$ 500 milhões para infraestrutura no Norte, Nordeste e Centro-Oeste</h1>
+    <p class="lede">O Banco Interamericano de Desenvolvimento vai capitalizar o FDA, o FDNE e o FDCO para que financiem empresas privadas e concessionárias com crédito de longo prazo em reais. O foco são projetos de transporte, logística, água e saneamento, privados ou em PPP, que hoje não fecham com o crédito de mercado.</p>
+    <p class="lede" style="margin-top:12px">A expectativa do BID é beneficiar cerca de 2 milhões de pessoas, sendo 1,2 milhão com acesso ampliado a água e esgoto.</p>
+    <div class="cta">
+      <a class="btn btn-amber" href="#simulador">Simular um financiamento</a>
+      <a class="btn btn-ghost" href="#condicoes">Ver as condições</a>
+    </div>
+    <div class="status"><i></i><span>Aprovada pela Diretoria Executiva do BID. Em trâmite no Brasil antes do início da implementação.</span></div>
+    <div class="facts">
+      <div class="fact"><div class="n">US$ 500 mi</div><div class="l">do BID para capitalizar os três fundos regionais</div></div>
+      <div class="fact"><div class="n">até 60%</div><div class="l">do investimento em infraestrutura, em áreas prioritárias, na linha BID</div></div>
+      <div class="fact"><div class="n">até 20 anos</div><div class="l">de prazo para infraestrutura, com carência e pagamentos semestrais</div></div>
+      <div class="fact"><div class="n" id="factRate">4,4% a 11,8%</div><div class="l">ao ano acima do IPCA, conforme região, setor e localização</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="band white" id="projetos">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Projetos buscados</div><h2>Que projetos a linha financia</h2></div>
+      <p>Empreendimentos de porte médio, de concessionárias com contratos regulados ou de projetos totalmente privados. São projetos economicamente viáveis que precisam de prazo longo e custo menor para fechar financeiramente.</p>
+    </div>
+    <div class="sectors" style="margin-top:0">
+      <div class="sector"><h4>Logística e integração</h4><p>Ferrovias, rodovias, terminais logísticos e aeroportuários.</p></div>
+      <div class="sector"><h4>Transporte fluvial e marítimo</h4><p>Hidrovias, portos e terminais; construção, renovação e retrofit de embarcações.</p></div>
+      <div class="sector"><h4>Mobilidade urbana e elétrica</h4><p>Descarbonização do transporte, eletrificação e renovação de frotas.</p></div>
+      <div class="sector"><h4>Água e saneamento</h4><p>Concessões voltadas à universalização dos serviços.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band dark" id="quem">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Quem faz o quê</div><h2>Superintendência, fundo e banco operador</h2></div>
+      <p>A empresa conversa com dois interlocutores: a superintendência da sua região e um banco operador habilitado.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><div class="k">Superintendência</div><h3>Enquadra e aprova</h3><p>Analisa a consulta prévia, define o tipo do projeto e aprova a participação do fundo.</p></div>
+      <div class="role"><div class="k">Fundo</div><h3>Entra com o recurso</h3><p>Fornece o funding de longo prazo, agora reforçado pelo capital do BID.</p></div>
+      <div class="role"><div class="k">Banco operador</div><h3>Contrata e assume o risco</h3><p>Analisa o crédito, define garantias, contrata, libera e cobra. Assume 100% do risco.</p></div>
+    </div>
+    <div class="who-wrap">
+      <table class="who">
+        <thead><tr><th>Fundo</th><th>Superintendência</th><th>Área de atuação</th><th>Bancos operadores</th></tr></thead>
+        <tbody>
+          <tr><td>FDA<small>Amazônia</small></td><td>Sudam</td><td>Amazônia Legal: AC, AM, AP, PA, RO, RR, TO, MT e parte do MA</td><td>Banco da Amazônia e instituições financeiras autorizadas e credenciadas</td></tr>
+          <tr><td>FDNE<small>Nordeste</small></td><td>Sudene</td><td>Os nove estados do Nordeste e o norte de MG e do ES</td><td>BNB, Banco do Brasil, BDMG, Caixa e Sicredi Evolução</td></tr>
+          <tr><td>FDCO<small>Centro-Oeste</small></td><td>Sudeco</td><td>GO, MT, MS e DF</td><td>Banco do Brasil, BRDE, Caixa, Banco Genial e Sicredi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="condicoes">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Condições</div><h2>Condições gerais de financiamento</h2></div>
+      <p>As mesmas nos três fundos, definidas pelo Conselho Monetário Nacional na Resolução nº 4.960/2021.</p>
+    </div>
+    <div class="cond-wrap">
+      <table class="cond">
+        <tr><th>Participação do fundo</th><td><b>até 60%</b> do investimento em infraestrutura em áreas prioritárias (50% nas demais áreas). Saneamento e abastecimento de água chegam a 80%.</td></tr>
+        <tr><th>Recursos próprios</th><td><b>mínimo de 20%</b> do investimento total. O restante pode vir de outras fontes.</td></tr>
+        <tr><th>Prazo</th><td><b>até 20 anos</b> para infraestrutura, incluída a carência. Amortização e juros semestrais.</td></tr>
+        <tr><th>Carência</th><td><b>até 1 ano após a entrada em operação</b>, com juros capitalizados. O período de obra conta dentro da carência: um projeto com 3 anos de implantação pode ficar até 4 anos sem amortizar.</td></tr>
+        <tr><th>Taxa de juros</th><td><b id="condRate">IPCA + 4,4% a 11,8% a.a.</b> conforme região, setor e localização. A parte real é a TLP prefixada ajustada pelo coeficiente regional e pelo tipo do projeto, fixada no mês da contratação.</td></tr>
+        <tr><th>Garantias e risco</th><td>Definidas pelo banco operador, que assume <b>100% do risco</b> de crédito.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band white" id="acesso">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Como acessar</div><h2>Da consulta prévia ao desembolso</h2></div>
+      <p>A empresa começa pela superintendência da sua região e escolhe o banco operador. Não há intermediários obrigatórios.</p>
+    </div>
+    <div class="steps5">
+      <div class="step"><div class="no">1</div><h4>Consulta prévia</h4><p>Dados básicos do projeto enviados à superintendência, que emite o termo de enquadramento.</p><span class="who">Superintendência</span></div>
+      <div class="step"><div class="no">2</div><h4>Projeto e crédito</h4><p>O banco autoriza o projeto definitivo, analisa a viabilidade e aprova o crédito.</p><span class="who">Banco operador</span></div>
+      <div class="step"><div class="no">3</div><h4>Decisão do fundo</h4><p>A diretoria colegiada aprova a participação do fundo.</p><span class="who">Superintendência</span></div>
+      <div class="step"><div class="no">4</div><h4>Contrato</h4><p>Empresa e banco assinam o contrato de financiamento.</p><span class="who">Empresa e banco</span></div>
+      <div class="step"><div class="no">5</div><h4>Desembolsos</h4><p>Liberações conforme a execução comprovada e o aporte dos recursos próprios.</p><span class="who">Banco operador</span></div>
+    </div>
+    <div class="links3">
+      <a href="https://www.gov.br/sudam/pt-br/consulta-previa" target="_blank" rel="noopener">Consulta prévia do FDA (Sudam)</a>
+      <a href="https://www.bnb.gov.br/fdne" target="_blank" rel="noopener">FDNE (Sudene e Banco do Nordeste)</a>
+      <a href="https://www.gov.br/sudeco/pt-br/assuntos/fundo-de-desenvolvimento-do-centro-oeste" target="_blank" rel="noopener">FDCO (Sudeco)</a>
+    </div>
+    <details class="more">
+      <summary>Ver prazos máximos de cada etapa, por fundo</summary>
+      <div class="tbl-wrap">
+        <table class="deadlines">
+          <thead><tr><th>Etapa (prazo máximo)</th><th>FDA · Sudam</th><th>FDNE · Sudene</th><th>FDCO · Sudeco</th></tr></thead>
+          <tbody>
+            <tr><td>Análise da consulta prévia</td><td class="n">30 dias</td><td class="n">30 dias</td><td class="n">40 dias</td></tr>
+            <tr><td>Validade do termo de enquadramento</td><td class="n">150 dias</td><td class="n">150 dias</td><td class="n">150 dias</td></tr>
+            <tr><td>Autorização do banco para o projeto definitivo</td><td class="n">60 dias</td><td class="n">30 dias</td><td class="n">60 dias</td></tr>
+            <tr><td>Entrega do projeto ao banco</td><td class="n">120 dias</td><td class="n">60 dias (+60)</td><td class="n">120 dias</td></tr>
+            <tr><td>Análise pelo banco operador</td><td class="n">120 dias</td><td class="n">90 dias (+30)</td><td class="n">180 dias</td></tr>
+            <tr><td>Decisão da superintendência</td><td class="n">45 dias</td><td class="n">30 dias</td><td class="n">40 dias</td></tr>
+            <tr><td>Documentos para contratação</td><td class="n">120 dias</td><td class="n">60 dias (+60)</td><td class="n">120 dias</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="band sim" id="simulador">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Simulador</div><h2>Quanto custa e quanto o fundo financia</h2></div>
+      <p>Escolha o fundo, o município e o setor. O simulador enquadra o projeto, calcula a taxa e o fluxo semestral de pagamentos com os parâmetros do mês.</p>
+    </div>
+
+    <div class="sim-top">
+      <div class="funds" role="group" aria-label="Fundo">
+        <button type="button" data-fund="FDA" aria-pressed="true">FDA<small>Amazônia · Sudam</small></button>
+        <button type="button" data-fund="FDNE" aria-pressed="false">FDNE<small>Nordeste · Sudene</small></button>
+        <button type="button" data-fund="FDCO" aria-pressed="false">FDCO<small>Centro-Oeste · Sudeco</small></button>
+      </div>
+      <span class="ack"><span id="ackParams">Carregando parâmetros.</span> Resultado indicativo. <a href="#avisos">Termos da simulação</a></span>
+    </div>
+
+    <div class="grid">
+      <form class="panel" id="f" autocomplete="off">
+        <fieldset>
+          <legend>Localização</legend>
+          <div class="row2">
+            <label>Estado<select id="uf"></select></label>
+            <label>Município<select id="mun"></select></label>
+          </div>
+          <div class="prio" id="prioAuto"></div>
+          <label id="prioWrap">Prioridade espacial
+            <select id="prio">
+              <option value="1">Área prioritária (PNDR)</option>
+              <option value="0">Demais áreas</option>
+            </select>
+            <span class="hint" id="prioHint"></span>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Setor do empreendimento</legend>
+          <label>Setor prioritário<select id="setor"></select></label>
+          <div class="setor-desc" id="setorDesc"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Valores (R$ milhões)</legend>
+          <div class="row2">
+            <label>Investimento total<input class="num" id="inv" type="number" min="0" step="0.1" value="250"></label>
+            <label>Investimento fixo<input class="num" id="fixo" type="number" min="0" step="0.1" value="230"><span class="hint">sem terreno e bens usados</span></label>
+          </div>
+          <label>Valor solicitado ao fundo<input class="num" id="pedido" type="number" min="0" step="0.1" placeholder="máximo permitido"><span class="hint">Deixe vazio para usar o limite máximo.</span></label>
+          <div class="seg" role="group" aria-label="Tipo de projeto">
+            <button type="button" data-imp="1" aria-pressed="true">Implantação</button>
+            <button type="button" data-imp="0" aria-pressed="false">Ampliação ou modernização</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Prazos</legend>
+          <div class="row3">
+            <label>Até operar<input class="num" id="obra" type="number" min="0" max="96" step="6" value="24"><span class="hint">meses</span></label>
+            <label>Carência pós<input class="num" id="carPos" type="number" min="0" max="12" step="6" value="12"><span class="hint">até 12 meses</span></label>
+            <label>Prazo total<input class="num" id="prazo" type="number" min="1" max="20" step="1" value="20"><span class="hint" id="prazoHint">anos</span></label>
+          </div>
+          <div class="seg" role="group" aria-label="Sistema de amortização">
+            <button type="button" data-sis="SAC" aria-pressed="true">SAC</button>
+            <button type="button" data-sis="PRICE" aria-pressed="false">Price</button>
+          </div>
+          <span class="hint">SAC reduz a amortização de principal de forma constante e tende a gerar parcelas iniciais maiores. Price mantém a prestação real constante após a carência. Ambos são cenários ilustrativos, pois o cronograma contratual depende dos desembolsos e da aprovação do agente operador.</span>
+        </fieldset>
+        <details class="prem" id="prem">
+          <summary>Premissas de mercado</summary>
+          <fieldset>
+            <div class="row3">
+              <label>TLP pré<input class="num" id="tlp" type="number" step="0.01"><span class="hint">% a.a.</span></label>
+              <label>CDR<input class="num" id="cdr" type="number" step="0.01" min="0" max="1"><span class="hint" id="cdrHint"></span></label>
+              <label>IPCA<input class="num" id="ipca" type="number" step="0.1"><span class="hint">% a.a. projetado</span></label>
+            </div>
+            <span class="hint muted" style="font-size:11.5px">A TLP pré muda todo mês e o CDR todo ano (Decreto nº 9.291/2018). O IPCA projetado vem do boletim Focus do Banco Central e só afeta os valores nominais.</span>
+          </fieldset>
+        </details>
+      </form>
+
+      <div class="results" aria-live="polite">
+        <div class="panel hero2">
+          <div class="rate">
+            <div class="eyebrow">Taxa efetiva de juros (TFD)</div>
+            <div class="bigrate"><span class="ix">IPCA +</span><span id="rate">0,00%</span> <span class="pa">a.a.</span></div>
+            <div class="formula" id="formula"></div>
+            <div class="muted" style="font-size:13px" id="rateNote"></div>
+          </div>
+          <div class="enq">
+            <div class="eyebrow">Enquadramento</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px" id="chips"></div>
+            <div class="typegrid" id="typegrid" aria-label="Tabela de fatores de programa"></div>
+          </div>
+        </div>
+        <div class="panel kpis" id="kpis"></div>
+        <div class="alerts" id="alerts"></div>
+        <div class="panel">
+          <div class="secthead"><h2>Estrutura de financiamento</h2><span class="muted num" id="capTotal"></span></div>
+          <div class="capbar" id="capbar"></div>
+          <div class="legend" id="caplegend"></div>
+        </div>
+        <div class="panel foot">
+          <h2 style="color:var(--ink)">Regras aplicadas</h2>
+          <ul id="rules"></ul>
+        </div>
+      </div>
+    </div>
+    <p class="param-status" id="paramStatus"></p>
+  </div>
+</section>
+
+<section class="band white" id="avisos">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Avisos</div><h2>Termos da simulação</h2></div>
+      <p>Material informativo. Não substitui a análise das superintendências nem dos bancos operadores.</p>
+    </div>
+    <div class="disclaimer">
+      <ul>
+        <li>Os resultados são uma simulação e não valem como proposta de financiamento. O valor das prestações é aproximado.</li>
+        <li>A taxa segue a legislação vigente e os parâmetros indicados no simulador. A taxa de cada contrato é fixada no mês da contratação, e o saldo é corrigido pelo IPCA.</li>
+        <li>Prazo, carência e número de parcelas dependem da capacidade de pagamento e da aprovação do crédito pelo banco operador.</li>
+        <li>Taxas, prazos e demais condições podem ser alterados pelo Conselho Monetário Nacional e pelos conselhos das superintendências.</li>
+      </ul>
+      <ul>
+        <li>A contratação depende da disponibilidade de recursos dos fundos e do cumprimento das exigências regulamentares.</li>
+        <li>O enquadramento, o tipo do projeto e o limite de participação são definidos pela superintendência. A classificação dos municípios do FDA segue o simulador da Sudam; no FDNE e no FDCO, a prioridade espacial é uma sugestão a confirmar.</li>
+        <li>A implementação da linha BID depende da conclusão dos trâmites no Brasil.</li>
+      </ul>
+    </div>
+    <p class="weaver-role">A Weaver Advisory é consultora do BID na preparação da operação. Mapeamos projetos potencialmente elegíveis e gargalos de acesso ao crédito, para apoiar a melhoria dos processos junto às superintendências e aos bancos operadores. A empresa interessada deve se dirigir diretamente à superintendência da sua região e a um banco operador habilitado.</p>
+    <div class="sources">
+      <b>Fontes</b>
+      <ul>
+        <li><a href="https://www.iadb.org/pt-br/noticias/bid-apoiara-investimentos-em-infraestrutura-nas-regioes-norte-nordeste-e-centro-oeste-do-brasil" target="_blank" rel="noopener">BID, anúncio da operação</a></li>
+        <li><a href="https://www.bcb.gov.br/content/estabilidadefinanceira/especialnor/Resolu%C3%A7%C3%A3o4960.pdf" target="_blank" rel="noopener">Resolução CMN nº 4.960/2021</a></li>
+        <li><a href="https://investimentos.sudam.gov.br/simulador-fda/" target="_blank" rel="noopener">Sudam, Simulador FDA</a></li>
+        <li><a href="https://investimentos.sudam.gov.br/wp-content/uploads/2025/04/Resolucao_CONDEL_82_De_16122019.pdf" target="_blank" rel="noopener">Regulamento do FDA (Res. Condel/Sudam nº 82/2019)</a></li>
+        <li><a href="https://www.bnb.gov.br/fdne" target="_blank" rel="noopener">Banco do Nordeste, FDNE</a></li>
+        <li><a href="https://www.gov.br/sudeco/pt-br/assuntos/fundo-de-desenvolvimento-do-centro-oeste" target="_blank" rel="noopener">Sudeco, FDCO</a></li>
+        <li><a href="https://www2.camara.leg.br/legin/fed/decret/2018/decreto-9291-21-fevereiro-2018-786186-normaatualizada-pe.html" target="_blank" rel="noopener">Decreto nº 9.291/2018 (CDR)</a></li>
+        <li><a href="https://www.bcb.gov.br/publicacoes/focus" target="_blank" rel="noopener">Banco Central, boletim Focus</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <img class="logo logo-foot" src="assets/logo.png" alt="Weaver Advisory" width="400" height="172">
+      <p style="margin-top:10px">Bringing Investments to Emerging Markets</p>
+    </div>
+    <div style="text-align:right">
+      <p>Contato: <span style="color:#fff;user-select:all">info@weaveradvisory.com</span></p>
+      <p><a href="https://www.weaveradvisory.com" target="_blank" rel="noopener">weaveradvisory.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/sim.js"></script>
+<script>
+  // faixa de taxas (topo e tabela de condições) a partir dos parâmetros do mês
+  document.addEventListener('sim:ready', function(e){
+    try{
+      const p = e.detail, tlp = p.tlp_pre.valor/100, c = p.cdr;
+      const cdrs = [c.FDA, c.FDNE, c.FDCO].filter(isFinite);
+      const min = Math.min(...cdrs)*0.85*tlp, max = Math.max(...cdrs)*1.45*tlp;
+      const f = x => (x*100).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+      document.getElementById('factRate').textContent = f(min) + ' a ' + f(max);
+      document.getElementById('condRate').textContent = 'IPCA + ' + f(min) + ' a ' + f(max) + ' a.a.';
+    }catch(err){}
+  });
+</script>
+</body>
+</html>

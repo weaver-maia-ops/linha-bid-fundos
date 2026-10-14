@@ -1,0 +1,20 @@
+{
+  "atualizado_em": "2026-10-14",
+  "tlp_pre": {
+    "valor": 8.12,
+    "mes_ref": "2026-10",
+    "fonte": "Implícita no simulador oficial da Sudam em 14/10/2026: (1 + taxa BNDES 9,7418%) / 1,015 - 1"
+  },
+  "cdr": {
+    "FDA": 0.68,
+    "FDNE": 0.64,
+    "FDCO": 1.00,
+    "vigencia": "1º/7/2026 a 30/6/2027",
+    "fonte": "IBGE (mai/2026)"
+  },
+  "ipca_proj_fallback": 4.0,
+  "linha_bid": {
+    "valor_usd_mi": 500,
+    "status": "Aprovada pela Diretoria Executiva do BID; em trâmite no Brasil"
+  }
+}

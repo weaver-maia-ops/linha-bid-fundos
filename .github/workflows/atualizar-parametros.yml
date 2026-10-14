@@ -1,0 +1,41 @@
+name: Atualizar parâmetros do simulador
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Dias 1 a 10, 12:00 UTC, para capturar a TLP do mês.
+    - cron: '0 12 1-10 * *'
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Atualizar TLP e CDR de referência
+        run: python scripts/atualizar_parametros.py
+
+      - name: Validar dados e JavaScript
+        run: |
+          python -m json.tool data/params.json > /dev/null
+          python -m json.tool data/municipios.json > /dev/null
+          node --check assets/sim.js
+
+      - name: Registrar atualização
+        run: |
+          if git diff --quiet; then
+            echo "Sem alteração de parâmetros."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/params.json
+          git commit -m "Atualiza parâmetros do simulador"
+          git push
