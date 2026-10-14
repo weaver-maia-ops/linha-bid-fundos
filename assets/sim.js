@@ -9,12 +9,9 @@ const CATS = {
   EST:{nome:'Estruturador', infra:false, part:[0.55,0.45]},
   OUT:{nome:'Outros setores', infra:false, part:[0.50,0.40]}
 };
-const GENERIC_SETORES = [
-  {id:'SAN', titulo:'Saneamento e abastecimento de água', cat:'SAN', desc:'Abastecimento de água, esgotamento sanitário e resíduos sólidos.'},
-  {id:'INF', titulo:'Infraestrutura', cat:'INF', desc:'Energia (geração, transmissão e distribuição), telecomunicações, transporte e logística, irrigação, gás e dutos, portos e terminais, aeroportos, petróleo e biocombustíveis.'},
-  {id:'SP', titulo:'Serviço público', cat:'SP', desc:'Empreendimentos de interesse público e iniciativa privada voltados à prestação de serviços, como saúde e educação conveniadas.'},
-  {id:'EST', titulo:'Estruturador', cat:'EST', desc:'Empreendimentos que ampliam a estrutura produtiva local, com impacto relevante em novos negócios, empregos e renda regional.'},
-  {id:'OUT', titulo:'Outros setores prioritários', cat:'OUT', desc:'Demais setores listados nas prioridades setoriais do fundo (indústria, agroindústria, turismo, serviços etc.).'}
+const BID_SETORES = [
+  {id:'SAN', titulo:'Água e saneamento', cat:'SAN', desc:'Abastecimento de água, esgotamento sanitário e soluções de saneamento elegíveis.'},
+  {id:'LOG', titulo:'Transporte e logística', cat:'INF', desc:'Rodovias, ferrovias, hidrovias, portos, terminais, aeroportos, mobilidade e infraestrutura logística.'}
 ];
 const FUNDS = {
   FDA:{sup:'Sudam', regiao:'Norte', cdr:0.68, agente:'Banco da Amazônia e demais IFs autorizadas',
@@ -38,7 +35,12 @@ function municipios(fund, uf){
   const reg = fund==='FDNE' ? DATA.NE : DATA.CO;
   return (reg[uf]||[]).map(([n,c])=>({nome:n, capital:c}));
 }
-function setores(fund){ return fund==='FDA' ? DATA.FDA_SETORES : GENERIC_SETORES; }
+function setores(fund){
+  if (fund!=='FDA') return BID_SETORES;
+  // A linha BID cobre transporte, logística, água e saneamento. Mantêm-se os
+  // dois enquadramentos FDA de transporte porque têm regras de prioridade distintas.
+  return DATA.FDA_SETORES.filter(s=>['2211','2214','2221'].includes(s.id));
+}
 
 function fillUF(){
   const f = FUNDS[st.fund];
@@ -125,7 +127,7 @@ function calc(){
 
   // participação
   const inv = num('inv')||0, fixo = isFinite(num('fixo')) ? num('fixo') : inv;
-  const pct = cat.part[prio?0:1];
+  const pct = Math.min(cat.part[prio?0:1], 0.60);
   const limPct = inv*pct, limFixo = fixo*0.90;
   const lim = Math.min(limPct, limFixo, inv*0.80);
   const ped = num('pedido');
@@ -155,7 +157,7 @@ function calc(){
 
   $('kpis').innerHTML = [
     ['Teto indicativo', inv>0 ? fmtR(valor) : 'Informe o investimento', inv>0 ? `${fmtPct(valor/inv,0)} do investimento total` : 'sujeito ao investimento elegível'],
-    ['Participação máxima', fmtPct(pct,0), `${cat.nome.toLowerCase()}, ${prio?'área prioritária':'demais áreas'}`],
+    ['Participação máxima', fmtPct(pct,0), `limite da linha BID, ${cat.nome.toLowerCase()}`],
     ['Prazo máximo', `${maxAnos} anos`, 'inclui o período de carência'],
     ['Carência máxima', 'Obra + até 12 meses', 'juros capitalizados durante a carência']
   ].map(([k,v,s])=>`<div class="kpi"><span class="k">${k}</span><span class="v">${v}</span><span class="s">${s}</span></div>`).join('');
@@ -178,7 +180,7 @@ function calc(){
   $('rules').innerHTML = [
     `Agente operador: ${F.agente}. Risco integral do agente.`,
     `CDR ${F.regiao}: ${cdr.toFixed(2).replace('.',',')} (IBGE). Fatores de programa (Anexo III da Res. 4.960): A 0,85 · B 1,05 · C 1,25 · D 1,45.`,
-    `Participação do fundo até 80% do investimento total e 90% do investimento fixo, dentro do limite setorial do Anexo II.`,
+    `Participação da linha BID até 60% do investimento total, também limitada a 90% do investimento fixo.`,
     `Recursos próprios: no mínimo 20% do investimento total.`,
     `Prazo: até 20 anos para infraestrutura e 12 anos para os demais, incluída a carência de até 1 ano após a entrada em operação.`,
     `Amortizações e juros semestrais; juros capitalizados na carência.`
