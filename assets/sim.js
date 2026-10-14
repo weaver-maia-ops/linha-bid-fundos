@@ -27,7 +27,7 @@ const FUNDS = {
 const UFNOME = {AC:'Acre',AM:'Amazonas',AP:'Amapá',MA:'Maranhão',MT:'Mato Grosso',PA:'Pará',RO:'Rondônia',RR:'Roraima',TO:'Tocantins',AL:'Alagoas',BA:'Bahia',CE:'Ceará',PB:'Paraíba',PE:'Pernambuco',PI:'Piauí',RN:'Rio Grande do Norte',SE:'Sergipe',DF:'Distrito Federal',GO:'Goiás',MS:'Mato Grosso do Sul'};
 
 const $ = id => document.getElementById(id);
-const st = {fund:'FDA', imp:true, sis:'SAC', val:'real'};
+const st = {fund:null, imp:null};
 const fmtPct = (x,d=2) => (x*100).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})+'%';
 const fmtM = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fmtR = x => 'R$ '+fmtM(x)+' mi';
@@ -43,24 +43,24 @@ function setores(fund){ return fund==='FDA' ? DATA.FDA_SETORES : GENERIC_SETORES
 function fillUF(){
   const f = FUNDS[st.fund];
   const prev = $('uf').value;
-  $('uf').innerHTML = f.ufs.map(u=>`<option value="${u}">${UFNOME[u]}</option>`).join('');
-  const def = {FDA:'PA', FDNE:'PE', FDCO:'GO'}[st.fund];
-  $('uf').value = f.ufs.includes(prev) ? prev : def;
+  $('uf').innerHTML = '<option value="">Selecione</option>'+f.ufs.map(u=>`<option value="${u}">${UFNOME[u]}</option>`).join('');
+  $('uf').value = f.ufs.includes(prev) ? prev : '';
   fillMun();
 }
 function fillMun(){
+  if (!$('uf').value){
+    $('mun').innerHTML = '<option value="">Selecione primeiro o estado</option>';
+    showBlank('Selecione o estado, o município e o setor para iniciar a simulação.');
+    return;
+  }
   const list = municipios(st.fund, $('uf').value);
-  $('mun').innerHTML = list.map((m,i)=>`<option value="${i}">${m.nome}</option>`).join('');
-  const defs = {PA:'Barcarena', PE:'Petrolina', GO:'Anápolis'};
-  const want = defs[$('uf').value];
-  const ix = want ? list.findIndex(m=>m.nome===want) : -1;
-  if (ix>=0) $('mun').value = String(ix);
-  onMun();
+  $('mun').innerHTML = '<option value="">Selecione</option>'+list.map((m,i)=>`<option value="${i}">${m.nome}</option>`).join('');
+  showBlank('Selecione o município e o setor para iniciar a simulação.');
 }
 function onMun(){
   const list = municipios(st.fund, $('uf').value);
   const m = list[+$('mun').value];
-  if (!m) return;
+  if (!m){ showBlank('Selecione o município e o setor para iniciar a simulação.'); return; }
   if (st.fund==='FDA' && m.prio!=null){
     $('prioWrap').hidden = true;
     $('prioAuto').innerHTML = `<span class="pill ${m.prio?'p':'d'}">${m.prio?'Área prioritária':'Demais áreas'}</span><span class="muted">conforme o simulador oficial da Sudam</span>`;
@@ -86,38 +86,28 @@ function fillSetor(){
   const list = setores(st.fund);
   if (st.fund==='FDA'){
     const groups = [...new Set(list.map(s=>s.grupo))];
-    $('setor').innerHTML = groups.map(g=>`<optgroup label="${g}">`+list.filter(s=>s.grupo===g).map(s=>`<option value="${s.id}">${s.codigo} ${s.titulo}</option>`).join('')+'</optgroup>').join('');
+    $('setor').innerHTML = '<option value="">Selecione</option>'+groups.map(g=>`<optgroup label="${g}">`+list.filter(s=>s.grupo===g).map(s=>`<option value="${s.id}">${s.codigo} ${s.titulo}</option>`).join('')+'</optgroup>').join('');
   } else {
-    $('setor').innerHTML = list.map(s=>`<option value="${s.id}">${s.titulo}</option>`).join('');
+    $('setor').innerHTML = '<option value="">Selecione</option>'+list.map(s=>`<option value="${s.id}">${s.titulo}</option>`).join('');
   }
-  const def = st.fund==='FDA' ? '2214' : 'INF';
-  if (list.some(s=>s.id===def)) $('setor').value = def;
 }
 
-// Cronograma semestral em termos reais (base IPCA). Liberação única em t0.
-function cronograma({valor, taxa, carMeses, prazoMeses, sistema, ipca}){
-  const i = Math.pow(1+taxa, 0.5) - 1;
-  const N = Math.max(1, Math.round(prazoMeses/6));
-  const G = Math.min(N-1, Math.max(0, Math.round(carMeses/6)));
-  const nA = N - G;
-  const rows = []; let s = valor;
-  for (let k=1; k<=G; k++){
-    const j = s*i; rows.push({k, mes:k*6, ini:s, juros:0, cap:j, amort:0, prest:0, fim:s+j, grace:true}); s += j;
-  }
-  const base = s;
-  const pmt = sistema==='PRICE' ? (i===0 ? base/nA : base*i/(1-Math.pow(1+i,-nA))) : 0;
-  for (let k=G+1; k<=N; k++){
-    const j = s*i;
-    const a = sistema==='PRICE' ? pmt - j : base/nA;
-    const fim = Math.max(0, s - a);
-    rows.push({k, mes:k*6, ini:s, juros:j, cap:0, amort:a, prest:a+j, fim, grace:false});
-    s = fim;
-  }
-  for (const r of rows){ r.fn = Math.pow(1+ipca, r.mes/12); }
-  return {rows, G, N, nA, i};
+function showBlank(message){
+  $('rate').textContent = '—';
+  $('formula').textContent = message;
+  $('rateNote').textContent = 'Resultado indicativo. A análise e a contratação dependem da superintendência e do agente operador.';
+  $('chips').innerHTML = '';
+  $('typegrid').innerHTML = '';
+  $('kpis').innerHTML = '';
+  $('alerts').innerHTML = `<div class="alert info">${message}</div>`;
+  $('rules').innerHTML = '';
 }
 
 function calc(){
+  if (!st.fund || !$('uf').value || $('mun').value==='' || !$('setor').value){
+    showBlank('Selecione fundo, estado, município e setor para iniciar a simulação.');
+    return;
+  }
   const fund = st.fund, F = FUNDS[fund];
   const list = municipios(fund, $('uf').value);
   const m = list[+$('mun').value] || {};
@@ -130,18 +120,8 @@ function calc(){
   const tlp = num('tlp')/100, cdr = num('cdr'), ipca = num('ipca')/100;
   const taxa = cdr*fp*tlp;
 
-  // prazos
+  // prazo máximo definido pela Resolução CMN nº 4.960/2021
   const maxAnos = cat.infra ? 20 : 12;
-  $('prazo').max = maxAnos;
-  $('prazoHint').textContent = `anos (máx. ${maxAnos})`;
-  let prazo = num('prazo'); if (!(prazo>0)) prazo = maxAnos;
-  const prazoEf = Math.min(prazo, maxAnos);
-  const obra = Math.max(0, num('obra')||0), carPos = Math.min(12, Math.max(0, num('carPos')||0));
-  const carSolicitada = obra + carPos;
-  // O cronograma precisa reservar ao menos um semestre para amortização.
-  // Quando a carência informada esgota o prazo, usa-se o maior período compatível.
-  const carMax = Math.max(0, prazoEf*12 - 6);
-  const car = Math.min(carSolicitada, carMax);
 
   // participação
   const inv = num('inv')||0, fixo = isFinite(num('fixo')) ? num('fixo') : inv;
@@ -173,28 +153,18 @@ function calc(){
   }
   $('typegrid').innerHTML = tg;
 
-  // cronograma
-  const sch = cronograma({valor, taxa, carMeses:car, prazoMeses:prazoEf*12, sistema:st.sis, ipca});
-  const amortRows = sch.rows.filter(r=>!r.grace);
-  const first = amortRows[0] || {prest:0, fn:1};
-  const totR = amortRows.reduce((a,r)=>a+r.prest,0);
-  const totN = amortRows.reduce((a,r)=>a+r.prest*r.fn,0);
-  const capJ = sch.rows.filter(r=>r.grace).reduce((a,r)=>a+r.cap,0);
-  const nom = st.val==='nom';
-
   $('kpis').innerHTML = [
-    ['Financiamento', fmtR(valor), `${fmtPct(inv>0?valor/inv:0,0)} do investimento total`],
-    ['Prazo · carência', `${prazoEf} a · ${car} m`, `${sch.nA} parcelas semestrais`],
-    ['1ª parcela', fmtR(nom? first.prest*first.fn : first.prest), `mês ${amortRows[0]?amortRows[0].mes:'n/d'} · ${nom?'nominal':'real'}`],
-    ['Total pago', fmtR(nom? totN : totR), `juros capitalizados: ${fmtR(capJ)}`]
+    ['Teto indicativo', inv>0 ? fmtR(valor) : 'Informe o investimento', inv>0 ? `${fmtPct(valor/inv,0)} do investimento total` : 'sujeito ao investimento elegível'],
+    ['Participação máxima', fmtPct(pct,0), `${cat.nome.toLowerCase()}, ${prio?'área prioritária':'demais áreas'}`],
+    ['Prazo máximo', `${maxAnos} anos`, 'inclui o período de carência'],
+    ['Carência máxima', 'Obra + até 12 meses', 'juros capitalizados durante a carência']
   ].map(([k,v,s])=>`<div class="kpi"><span class="k">${k}</span><span class="v">${v}</span><span class="s">${s}</span></div>`).join('');
 
   // alertas
   const al = [];
   if (isFinite(ped) && ped > lim) al.push(`O valor solicitado (${fmtR(ped)}) passa do limite. O simulador usou o máximo de ${fmtR(lim)}.`);
   if (limFixo < limPct && limFixo < inv*0.8) al.push(`O limite ficou em 90% do investimento fixo (${fmtR(limFixo)}), abaixo do percentual setorial.`);
-  if (prazo > maxAnos) al.push(`O prazo máximo para este setor é ${maxAnos} anos, incluindo a carência.`);
-  if (carSolicitada > carMax) al.push(`A carência informada (${carSolicitada} meses) excede o prazo disponível. A projeção usou ${car} meses para preservar uma parcela semestral de amortização.`);
+
   if (fund==='FDNE'){
     const semi = prio; // aproximação: limite reduzido para semiárido/RIDE
     const minV = st.imp ? (semi?20:30) : (semi?15:25);
@@ -205,29 +175,6 @@ function calc(){
   if (fund==='FDCO') al.push({info:true, t:'Para o FDCO, confirme a prioridade espacial na Resolução Condel/Sudeco nº 166/2025, alterada pela nº 178/2026. A simulação usa a opção selecionada como premissa indicativa.'});
   $('alerts').innerHTML = al.map(a=> typeof a==='string' ? `<div class="alert">${a}</div>` : `<div class="alert info">${a.t}</div>`).join('');
 
-  // estrutura
-  const parts = [
-    {k:fund, v:valor, c:'var(--river)'},
-    {k:'Recursos próprios (mín. 20%)', v:Math.min(proprios, inv-valor), c:'var(--ink)'},
-    {k:'Outras fontes', v:outras, c:'var(--accent)'}
-  ];
-  $('capTotal').textContent = 'Investimento total ' + fmtR(inv);
-  $('capbar').innerHTML = parts.filter(p=>p.v>0).map(p=>`<div style="flex:0 0 ${inv>0?p.v/inv*100:0}%;background:${p.c}" title="${p.k}">${inv>0&&p.v/inv>0.08?fmtPct(p.v/inv,0):''}</div>`).join('');
-  $('caplegend').innerHTML = parts.map(p=>`<span><i style="background:${p.c}"></i>${p.k}: <span class="num">${fmtR(p.v)}</span></span>`).join('') +
-    `<span>Limite setorial: <span class="num">${fmtPct(pct,0)}</span> (${cat.nome.toLowerCase()}, ${prio?'área prioritária':'demais áreas'})</span>`;
-
-  const sub = tlp - taxa;
-  if ($('cmp')) $('cmp').innerHTML = [
-    ['TLP pré (custo real de referência)', fmtPct(tlp)],
-    ['TFD deste enquadramento', fmtPct(taxa)],
-    ['Diferença', (sub>=0?'−':'+')+fmtPct(Math.abs(sub))+' a.a.'],
-    ['TFD / TLP', fmtPct(taxa/tlp,0)]
-  ].map(([a,b])=>`<div class="line"><span>${a}</span><span class="num">${b}</span></div>`).join('');
-
-  if ($('valMode')) $('valMode').textContent = nom ? `valores nominais (IPCA ${fmtPct(ipca,1)} a.a.)` : 'valores reais (de hoje)';
-  if ($('chart')) drawChart(sch, nom);
-  if ($('tbl')) drawTable(sch, nom);
-
   $('rules').innerHTML = [
     `Agente operador: ${F.agente}. Risco integral do agente.`,
     `CDR ${F.regiao}: ${cdr.toFixed(2).replace('.',',')} (IBGE). Fatores de programa (Anexo III da Res. 4.960): A 0,85 · B 1,05 · C 1,25 · D 1,45.`,
@@ -236,46 +183,7 @@ function calc(){
     `Prazo: até 20 anos para infraestrutura e 12 anos para os demais, incluída a carência de até 1 ano após a entrada em operação.`,
     `Amortizações e juros semestrais; juros capitalizados na carência.`
   ].map(t=>`<li>${t}</li>`).join('');
-  save();
 }
-
-function drawChart(sch, nom){
-  const rows = sch.rows, n = rows.length;
-  const W = Math.max(640, n*16+60), H = 230, pl=48, pr=10, pt=12, pb=28;
-  const vals = rows.map(r=>{ const f = nom? r.fn : 1; return {a:r.amort*f, j:r.juros*f, c:r.cap*f}; });
-  const max = Math.max(1e-9, ...vals.map(v=>v.a+v.j+v.c));
-  const step = niceStep(max/4); const top = Math.ceil(max/step)*step;
-  const y = v => pt + (H-pt-pb)*(1 - v/top);
-  const bw = (W-pl-pr)/n;
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:${Math.min(W,640)}px" role="img" aria-label="Pagamentos semestrais">`;
-  for (let t=0; t<=top+1e-9; t+=step){
-    s += `<line x1="${pl}" x2="${W-pr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1"/>`;
-    s += `<text x="${pl-6}" y="${y(t)+3}" text-anchor="end">${fmtM(t, step<1?1:0)}</text>`;
-  }
-  vals.forEach((v,i)=>{
-    const x = pl + i*bw + bw*0.15, w = bw*0.7;
-    if (v.c>0) s += `<rect x="${x}" y="${y(v.c)}" width="${w}" height="${y(0)-y(v.c)}" fill="var(--line)"/>`;
-    if (v.a>0) s += `<rect x="${x}" y="${y(v.a)}" width="${w}" height="${y(0)-y(v.a)}" fill="var(--river)"/>`;
-    if (v.j>0) s += `<rect x="${x}" y="${y(v.a+v.j)}" width="${w}" height="${y(v.a)-y(v.a+v.j)}" fill="var(--accent)"/>`;
-    if (rows[i].mes % 24 === 0) s += `<text x="${pl+i*bw+bw/2}" y="${H-10}" text-anchor="middle">a${rows[i].mes/12}</text>`;
-  });
-  s += `<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1"/></svg>`;
-  $('chart').innerHTML = s;
-}
-function niceStep(x){ const p = Math.pow(10, Math.floor(Math.log10(x))); const m = x/p; return (m<=1?1:m<=2?2:m<=5?5:10)*p; }
-function drawTable(sch, nom){
-  const f = r => nom ? r.fn : 1;
-  let h = `<thead><tr><th>Semestre</th><th>Mês</th><th>Saldo inicial</th><th>Juros</th><th>Amortização</th><th>Parcela</th><th>Saldo final</th></tr></thead><tbody>`;
-  for (const r of sch.rows){
-    h += `<tr class="${r.grace?'grace':''}"><td>${r.k}${r.grace?' · carência':''}</td><td>${r.mes}</td><td>${fmtM(r.ini*f(r),2)}</td><td>${fmtM((r.grace?r.cap:r.juros)*f(r),2)}${r.grace?'*':''}</td><td>${fmtM(r.amort*f(r),2)}</td><td>${fmtM(r.prest*f(r),2)}</td><td>${fmtM(r.fim*f(r),2)}</td></tr>`;
-  }
-  h += `</tbody>`;
-  $('tbl').innerHTML = h;
-}
-
-const KEY = 'simfd-v1';
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify({fund:st.fund})); }catch(e){} }
-function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } }
 
 function setFund(fund){
   st.fund = fund;
@@ -292,10 +200,10 @@ function segBind(attr, key, conv){
   }));
 }
 document.querySelectorAll('.funds button').forEach(b=>b.addEventListener('click',()=>setFund(b.dataset.fund)));
-segBind('imp','imp',v=>v==='1'); segBind('sis','sis',v=>v); segBind('val','val',v=>v);
+segBind('imp','imp',v=>v==='1');
 $('uf').addEventListener('change', fillMun);
 $('mun').addEventListener('change', onMun);
-['prio','setor','inv','fixo','pedido','obra','carPos','prazo','tlp','cdr','ipca'].forEach(id=>$(id).addEventListener('input', calc));
+['prio','setor','inv','fixo','pedido','tlp','cdr','ipca'].forEach(id=>$(id).addEventListener('input', calc));
 $('f').addEventListener('submit', e=>e.preventDefault());
 
 
@@ -333,8 +241,7 @@ async function boot(){
     const ack = $('ackParams'); if (ack) ack.textContent = `Parâmetros de ${mesAno(PARAMS.tlp_pre.mes_ref)}.`;
   };
   paint();
-  const saved = load();
-  setFund(saved && FUNDS[saved.fund] ? saved.fund : 'FDA');
+  showBlank('Selecione um fundo para iniciar a simulação.');
   document.dispatchEvent(new CustomEvent('sim:ready', {detail: PARAMS}));
   try{
     const f = await ipcaFocus();

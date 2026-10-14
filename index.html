@@ -451,7 +451,7 @@ details.more .tbl-wrap{margin-top:14px}
 
     <div class="sim-top">
       <div class="funds" role="group" aria-label="Fundo">
-        <button type="button" data-fund="FDA" aria-pressed="true">FDA<small>Amazônia · Sudam</small></button>
+        <button type="button" data-fund="FDA" aria-pressed="false">FDA<small>Amazônia · Sudam</small></button>
         <button type="button" data-fund="FDNE" aria-pressed="false">FDNE<small>Nordeste · Sudene</small></button>
         <button type="button" data-fund="FDCO" aria-pressed="false">FDCO<small>Centro-Oeste · Sudeco</small></button>
       </div>
@@ -483,27 +483,14 @@ details.more .tbl-wrap{margin-top:14px}
         <fieldset>
           <legend>Valores (R$ milhões)</legend>
           <div class="row2">
-            <label>Investimento total<input class="num" id="inv" type="number" min="0" step="0.1" value="250"></label>
-            <label>Investimento fixo<input class="num" id="fixo" type="number" min="0" step="0.1" value="230"><span class="hint">sem terreno e bens usados</span></label>
+            <label>Investimento total<input class="num" id="inv" type="number" min="0" step="0.1" placeholder="Ex.: 250"></label>
+            <label>Investimento fixo<input class="num" id="fixo" type="number" min="0" step="0.1" placeholder="Ex.: 230"><span class="hint">sem terreno e bens usados</span></label>
           </div>
           <label>Valor solicitado ao fundo<input class="num" id="pedido" type="number" min="0" step="0.1" placeholder="máximo permitido"><span class="hint">Deixe vazio para usar o limite máximo.</span></label>
           <div class="seg" role="group" aria-label="Tipo de projeto">
-            <button type="button" data-imp="1" aria-pressed="true">Implantação</button>
+            <button type="button" data-imp="1" aria-pressed="false">Implantação</button>
             <button type="button" data-imp="0" aria-pressed="false">Ampliação ou modernização</button>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>Prazos</legend>
-          <div class="row3">
-            <label>Até operar<input class="num" id="obra" type="number" min="0" max="96" step="6" value="24"><span class="hint">meses</span></label>
-            <label>Carência pós<input class="num" id="carPos" type="number" min="0" max="12" step="6" value="12"><span class="hint">até 12 meses</span></label>
-            <label>Prazo total<input class="num" id="prazo" type="number" min="1" max="20" step="1" value="20"><span class="hint" id="prazoHint">anos</span></label>
-          </div>
-          <div class="seg" role="group" aria-label="Sistema de amortização">
-            <button type="button" data-sis="SAC" aria-pressed="true">SAC</button>
-            <button type="button" data-sis="PRICE" aria-pressed="false">Price</button>
-          </div>
-          <span class="hint">SAC reduz a amortização de principal de forma constante e tende a gerar parcelas iniciais maiores. Price mantém a prestação real constante após a carência. Ambos são cenários ilustrativos, pois o cronograma contratual depende dos desembolsos e da aprovação do agente operador.</span>
         </fieldset>
         <details class="prem" id="prem">
           <summary>Premissas de mercado</summary>
@@ -534,11 +521,6 @@ details.more .tbl-wrap{margin-top:14px}
         </div>
         <div class="panel kpis" id="kpis"></div>
         <div class="alerts" id="alerts"></div>
-        <div class="panel">
-          <div class="secthead"><h2>Estrutura de financiamento</h2><span class="muted num" id="capTotal"></span></div>
-          <div class="capbar" id="capbar"></div>
-          <div class="legend" id="caplegend"></div>
-        </div>
         <div class="panel foot">
           <h2 style="color:var(--ink)">Regras aplicadas</h2>
           <ul id="rules"></ul>
