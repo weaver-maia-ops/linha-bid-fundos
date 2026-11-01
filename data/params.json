@@ -1,14 +1,14 @@
 {
-  "atualizado_em": "2026-10-14",
+  "atualizado_em": "2026-11-01",
   "tlp_pre": {
-    "valor": 8.12,
-    "mes_ref": "2026-10",
-    "fonte": "Implícita no simulador oficial da Sudam em 14/10/2026: (1 + taxa BNDES 9,7418%) / 1,015 - 1"
+    "valor": 7.72,
+    "mes_ref": "2026-11",
+    "fonte": "Implícita no simulador oficial da Sudam em 01/11/2026: (1 + taxa BNDES 9.3358%) / 1.015 - 1"
   },
   "cdr": {
     "FDA": 0.68,
     "FDNE": 0.64,
-    "FDCO": 1.00,
+    "FDCO": 1.0,
     "vigencia": "1º/7/2026 a 30/6/2027",
     "fonte": "IBGE (mai/2026)"
   },
