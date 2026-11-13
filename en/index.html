@@ -317,6 +317,19 @@ details.more .tbl-wrap{margin-top:14px}
 .lang a,.lang b{color:rgba(255,255,255,.78);text-decoration:none;font-weight:500}
 .lang b{color:#fff;font-weight:600}
 .lang a:hover{color:#fff}
+
+.elig{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.elig-card{background:var(--paper);border-top:3px solid var(--green);padding:22px 24px}
+.elig-card h3{font-size:1.15rem;margin-bottom:12px}
+.elig-card ul{list-style:none;display:grid;gap:9px;font-size:14.5px}
+.elig-card li{position:relative;padding-left:20px}
+.elig-card li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;background:var(--amber)}
+.elig-card.full{grid-column:1 / -1;border-top-color:var(--amber)}
+.elig-card .lead{font-size:15px;margin-bottom:16px}
+.elig-card h4{font-size:.98rem;margin:16px 0 10px}
+.elig-card ul ul{margin-top:9px}
+.elig-card ul ul li::before{background:var(--green-mid)}
+@media (max-width:760px){.elig{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -326,6 +339,7 @@ details.more .tbl-wrap{margin-top:14px}
     <a class="brand" href="#inicio" aria-label="Weaver Advisory, home"><img class="logo" src="../assets/logo.png" alt="Weaver Advisory" width="400" height="172"><span class="slogan">Bringing Investments to Emerging Markets</span></a>
     <ul>
       <li><a href="#projetos">Projects</a></li>
+      <li><a href="#elegibilidade">Eligibility</a></li>
       <li><a href="#quem">Who does what</a></li>
       <li><a href="#condicoes">Terms</a></li>
       <li><a href="#acesso">How to apply</a></li>
@@ -366,6 +380,62 @@ details.more .tbl-wrap{margin-top:14px}
       <div class="sector"><h4>River and maritime transport</h4><p>Waterways, ports and terminals; construction, renewal and retrofit of vessels.</p></div>
       <div class="sector"><h4>Urban and electric mobility</h4><p>Transport decarbonization, electrification and fleet renewal.</p></div>
       <div class="sector"><h4>Water and sanitation</h4><p>Concessions aimed at universal service coverage.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="elegibilidade">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Eligibility</div><h2>What the credit line finances and who can borrow</h2></div>
+      <p>Eligible items under the IDB credit line through the regional development funds. Final eligibility is determined by the regional development agency and the operating bank.</p>
+    </div>
+    <div class="elig">
+      <div class="elig-card">
+        <h3>Transport and logistics</h3>
+        <ul>
+          <li>Modernization of private river transport and public transport fleets</li>
+          <li>Low-carbon vessels, barges and buses for passenger transport</li>
+          <li>Renewal or retrofit of private freight fleets (efficient trucks)</li>
+          <li>Construction, expansion or upgrade of private leased terminals in public ports and private-use terminals (TUPs)</li>
+          <li>Construction, expansion or upgrade of private port-backup terminals and dry ports</li>
+          <li>Investments in airport concessions (rehabilitation, maintenance, etc.)</li>
+          <li>Investments in highway concessions (rehabilitation, upgrading, maintenance, etc.)</li>
+          <li>Expansion of private logistics terminals (grain, fertilizers, containers, etc.)</li>
+          <li>Modernization of railway infrastructure and rolling stock on concession-operated railways</li>
+        </ul>
+      </div>
+      <div class="elig-card">
+        <h3>Water and sanitation</h3>
+        <ul>
+          <li>Water supply systems operated by private concessionaires (construction, refurbishment, retrofit or expansion)</li>
+          <li>Sewerage systems operated by private concessionaires (construction, refurbishment, retrofit or expansion)</li>
+          <li>Solid waste management and treatment systems operated by private concessionaires (construction, refurbishment, retrofit or expansion)</li>
+          <li>Engineering designs by private companies, provided they are part of the investment</li>
+          <li>Rural sanitation projects operated by private companies</li>
+          <li>Operational improvements in water, sewerage or solid waste systems operated by private concessionaires</li>
+          <li>Energy efficiency in water, sewerage or waste systems operated by private concessionaires</li>
+          <li>Circular economy (use of sludge and gas, and energy generation) in water, sewerage or solid waste systems of private concessionaires</li>
+          <li>Water reuse systems operated by private companies</li>
+        </ul>
+      </div>
+      <div class="elig-card full">
+        <h3>Who can borrow and under what conditions</h3>
+        <p class="lead"><b>Eligible borrowers:</b> private companies responsible for subprojects in the eligible sectors, either concessionaires with regulated contracts or owners of fully private projects.</p>
+        <h4>Eligibility requirements</h4>
+        <ul>
+          <li>Eligibility criteria of the regional development funds</li>
+          <li>Alignment with the Regional Development Plan</li>
+          <li>Environmental, social and climate criteria of the IDB credit line:
+            <ul>
+              <li>not classified as Category A (high environmental and social impact) by the IDB</li>
+              <li>not falling under ESG exclusion criteria or involving companies or individuals sanctioned by the IDB</li>
+              <li>compliance with IDB provisions on prohibited practices</li>
+              <li>alignment with the Paris Agreement</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>

@@ -317,6 +317,19 @@ details.more .tbl-wrap{margin-top:14px}
 .lang a,.lang b{color:rgba(255,255,255,.78);text-decoration:none;font-weight:500}
 .lang b{color:#fff;font-weight:600}
 .lang a:hover{color:#fff}
+
+.elig{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.elig-card{background:var(--paper);border-top:3px solid var(--green);padding:22px 24px}
+.elig-card h3{font-size:1.15rem;margin-bottom:12px}
+.elig-card ul{list-style:none;display:grid;gap:9px;font-size:14.5px}
+.elig-card li{position:relative;padding-left:20px}
+.elig-card li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;background:var(--amber)}
+.elig-card.full{grid-column:1 / -1;border-top-color:var(--amber)}
+.elig-card .lead{font-size:15px;margin-bottom:16px}
+.elig-card h4{font-size:.98rem;margin:16px 0 10px}
+.elig-card ul ul{margin-top:9px}
+.elig-card ul ul li::before{background:var(--green-mid)}
+@media (max-width:760px){.elig{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -326,6 +339,7 @@ details.more .tbl-wrap{margin-top:14px}
     <a class="brand" href="#inicio" aria-label="Weaver Advisory, início"><img class="logo" src="assets/logo.png" alt="Weaver Advisory" width="400" height="172"><span class="slogan">Bringing Investments to Emerging Markets</span></a>
     <ul>
       <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#elegibilidade">Elegibilidade</a></li>
       <li><a href="#quem">Quem faz o quê</a></li>
       <li><a href="#condicoes">Condições</a></li>
       <li><a href="#acesso">Como acessar</a></li>
@@ -366,6 +380,62 @@ details.more .tbl-wrap{margin-top:14px}
       <div class="sector"><h4>Transporte fluvial e marítimo</h4><p>Hidrovias, portos e terminais; construção, renovação e retrofit de embarcações.</p></div>
       <div class="sector"><h4>Mobilidade urbana e elétrica</h4><p>Descarbonização do transporte, eletrificação e renovação de frotas.</p></div>
       <div class="sector"><h4>Água e saneamento</h4><p>Concessões voltadas à universalização dos serviços.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="elegibilidade">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Elegibilidade</div><h2>O que a linha financia e quem pode tomar crédito</h2></div>
+      <p>Itens elegíveis da linha BID nos fundos de desenvolvimento regional. O enquadramento final cabe à superintendência e ao banco operador.</p>
+    </div>
+    <div class="elig">
+      <div class="elig-card">
+        <h3>Transporte e logística</h3>
+        <ul>
+          <li>Modernização de frotas privadas de transporte fluvial e de transporte público</li>
+          <li>Embarcações, balsas e ônibus de baixa emissão de carbono para transporte de passageiros</li>
+          <li>Renovação ou retrofit de frotas privadas de transporte de carga (caminhões eficientes)</li>
+          <li>Implantação, ampliação ou melhoria de arrendamentos privados em portos públicos (terminais e TUPs)</li>
+          <li>Implantação, ampliação ou melhoria de terminais retroportuários privados e portos secos</li>
+          <li>Investimentos em concessões de aeroportos (reabilitação, manutenção etc.)</li>
+          <li>Investimentos em concessões de rodovias (reabilitação, qualificação, manutenção etc.)</li>
+          <li>Expansão de terminais logísticos privados (grãos, fertilizantes, contêineres etc.)</li>
+          <li>Modernização da infraestrutura ferroviária e do material rodante de ferrovias operadas sob concessão</li>
+        </ul>
+      </div>
+      <div class="elig-card">
+        <h3>Água e saneamento</h3>
+        <ul>
+          <li>Sistemas de abastecimento de água operados por concessionárias privadas (construção, reforma, retrofit ou ampliação)</li>
+          <li>Sistemas de esgotamento sanitário operados por concessionárias privadas (construção, reforma, retrofit ou ampliação)</li>
+          <li>Sistemas de manejo e tratamento de resíduos sólidos operados por concessionárias privadas (construção, reforma, retrofit ou ampliação)</li>
+          <li>Projetos de engenharia de empresas privadas, desde que façam parte do investimento</li>
+          <li>Projetos de saneamento rural operados por empresas privadas</li>
+          <li>Melhorias operacionais em sistemas de água, esgoto ou resíduos sólidos operados por concessionárias privadas</li>
+          <li>Eficiência energética em sistemas de água, esgoto ou resíduos operados por concessionárias privadas</li>
+          <li>Economia circular (aproveitamento de lodos e gases e geração de energia) em sistemas de água, esgoto ou resíduos sólidos de concessionárias privadas</li>
+          <li>Sistemas de reúso de água operados por empresas privadas</li>
+        </ul>
+      </div>
+      <div class="elig-card full">
+        <h3>Quem pode tomar o crédito e em que condições</h3>
+        <p class="lead"><b>Tomadores elegíveis:</b> empresas privadas responsáveis por subprojetos nos setores elegíveis, sejam concessionárias com contratos regulados ou donas de projetos 100% privados.</p>
+        <h4>Enquadramento</h4>
+        <ul>
+          <li>Critérios de elegibilidade dos fundos de desenvolvimento</li>
+          <li>Alinhamento ao Plano Regional de Desenvolvimento</li>
+          <li>Critérios socioambientais e climáticos da linha BID:
+            <ul>
+              <li>não ser classificado como categoria A (alto impacto socioambiental) pelo BID</li>
+              <li>não se enquadrar nos critérios de exclusão ESG nem envolver empresas ou pessoas sancionadas pelo BID</li>
+              <li>atender às disposições do BID sobre práticas proibidas</li>
+              <li>estar alinhado ao Acordo de Paris</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
