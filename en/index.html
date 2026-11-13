@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IDB Credit Line for Brazil’s Regional Development Funds | Weaver Advisory</title>
+<meta name="description" content="US$ 500 million from the IDB for Brazil’s FDA, FDNE and FDCO regional funds to finance private infrastructure in the North, Northeast and Central-West. Terms, application process and rate simulator.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<link rel="alternate" hreflang="pt-BR" href="../">
+<link rel="alternate" hreflang="en" href="./">
+<meta property="og:title" content="IDB Credit Line for Brazil’s Regional Development Funds">
+<meta property="og:description" content="Long-term, local-currency credit for transport, logistics, water and sanitation in Brazil’s North, Northeast and Central-West.">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap">
+<style>
+
+/* Layout: página editorial no padrão Weaver (faixas escuras e claras alternadas), terminando no simulador */
+:root{
+  --charcoal:#1f201c; --charcoal-2:#2a2b26;
+  --green-deep:#223327; --green:#45674e; --green-mid:#7f9483; --green-soft:#dfe5dc;
+  --bone:#dad7cd; --bone-light:#f6f5f0; --paper:#ffffff;
+  --mauve:#776871; --slate:#343b4e; --amber:#e98a15; --amber-soft:#fbe8cf;
+  --warn:#9a6a00; --warn-soft:#fbf0d2;
+  /* tokens usados pelo simulador */
+  --ink:var(--green-deep); --muted:#6b6f68; --line:var(--bone); --accent:var(--amber); --accent-soft:var(--amber-soft);
+  --river:var(--green); --river-soft:var(--green-soft); --surface:var(--paper); --sunk:#efeee8;
+  --f-head:"Jost","Avenir Next","Avenir","Futura","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-num:Georgia,"Times New Roman",serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--f-body);font-size:15.5px;line-height:1.6;color:var(--green-deep);background:var(--bone-light);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+a{color:var(--green)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.container{max-width:1200px;margin:0 auto;padding-inline:28px}
+@media (max-width:600px){.container{padding-inline:18px}}
+h1,h2,h3,h4{font-family:var(--f-head);font-weight:500;line-height:1.15;text-wrap:balance;letter-spacing:-.005em}
+.kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--green-mid)}
+.dark .kicker{color:var(--amber-soft)}
+p{max-width:68ch}
+
+/* navegação */
+.nav{position:sticky;top:0;z-index:20;background:rgba(31,32,28,.96);backdrop-filter:saturate(1.2) blur(6px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:58px;flex-wrap:wrap}
+.brand{font-family:var(--f-head);font-size:20px;font-weight:500;letter-spacing:.02em;color:#fff;text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.brand small{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-mid);font-weight:500}
+.nav ul{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+.nav ul a{color:rgba(255,255,255,.78);text-decoration:none;font-size:13px;letter-spacing:.04em}
+.nav ul a:hover{color:#fff}
+@media (max-width:760px){.nav ul{gap:14px;padding-bottom:10px}.nav ul a{font-size:12px}}
+
+/* hero */
+.hero{background:var(--charcoal);color:#fff;padding-block:84px 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 30%,rgba(69,103,78,.45),transparent 70%),radial-gradient(40% 60% at 70% 90%,rgba(127,148,131,.18),transparent 70%);pointer-events:none}
+.hero .container{position:relative}
+.hero h1{font-size:clamp(2.1rem,5vw,3.6rem);max-width:17ch;margin-top:14px}
+.hero .lede{font-size:clamp(1rem,1.6vw,1.15rem);color:rgba(255,255,255,.8);margin-top:20px;max-width:60ch;font-weight:300}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-block;font-family:var(--f-body);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;text-decoration:none;padding:13px 22px;border-radius:2px;border:1px solid transparent;cursor:pointer}
+.btn-amber{background:var(--amber);color:var(--charcoal)}
+.btn-amber:hover{background:var(--amber-soft)}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px;border-top:1px solid rgba(255,255,255,.14)}
+.fact{padding:22px 20px 26px 0;border-right:1px solid rgba(255,255,255,.14)}
+.fact+.fact{padding-left:20px}
+.fact:last-child{border-right:0}
+.fact .n{font-family:var(--f-num);font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.05;color:#fff}
+.fact .l{font-size:12.5px;color:rgba(255,255,255,.66);margin-top:8px;line-height:1.45}
+@media (max-width:820px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact:nth-child(2){border-right:0}.fact:nth-child(3){padding-left:0}.fact:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}}
+
+/* seções */
+section.band{padding-block:84px}
+section.band.dark{background:var(--charcoal);color:#fff}
+section.band.white{background:var(--paper)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;align-items:end;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.sec-head p{color:var(--muted);font-size:1.02rem}
+.dark .sec-head p{color:rgba(255,255,255,.72)}
+@media (max-width:820px){.sec-head{grid-template-columns:minmax(0,1fr);gap:16px}}
+
+/* fundos */
+.funds-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.funds-grid{grid-template-columns:minmax(0,1fr)}}
+.fund{background:var(--paper);border:1px solid var(--bone);display:flex;flex-direction:column}
+.fund .top{background:var(--green-deep);color:#fff;padding:22px 24px}
+.fund .top .code{font-family:var(--f-head);font-size:30px;font-weight:500;letter-spacing:.02em}
+.fund .top .name{font-size:13px;color:rgba(255,255,255,.75)}
+.fund .body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.fund dl{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.fund dt{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.fund dd{font-size:14px;line-height:1.5}
+.fund .nums{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--bone);margin-top:auto;padding-top:14px;gap:12px}
+.fund .nums b{display:block;font-family:var(--f-num);font-size:20px;font-weight:400;color:var(--green)}
+.fund .nums span{font-size:11.5px;color:var(--muted);line-height:1.35;display:block}
+.note-src{font-size:12px;color:var(--muted);margin-top:18px}
+
+/* arquitetura */
+.arch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid rgba(255,255,255,.16)}
+.arch .node{padding:22px 20px;border-right:1px solid rgba(255,255,255,.16);position:relative}
+.arch .node:last-child{border-right:0}
+.arch .who{font-family:var(--f-head);font-size:19px;font-weight:500}
+.arch .role{font-size:13.5px;color:rgba(255,255,255,.74);margin-top:8px;line-height:1.5}
+.arch .tag{display:inline-block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber-soft);margin-bottom:8px;font-weight:600}
+.arch .node:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;background:var(--charcoal);border-top:1px solid rgba(255,255,255,.3);border-right:1px solid rgba(255,255,255,.3);transform:translateY(-50%) rotate(45deg);z-index:1}
+@media (max-width:900px){.arch{grid-template-columns:minmax(0,1fr)}.arch .node{border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}.arch .node:last-child{border-bottom:0}.arch .node:not(:last-child)::after{right:auto;left:28px;top:auto;bottom:-7px;transform:rotate(135deg)}}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid rgba(255,255,255,.16)}
+.term{padding:20px 20px 20px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.term:nth-child(3n+2),.term:nth-child(3n+3){padding-left:20px;border-left:1px solid rgba(255,255,255,.16)}
+.term .k{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green-mid);font-weight:600}
+.term .v{font-family:var(--f-num);font-size:21px;margin-top:6px}
+.term .d{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px;line-height:1.45}
+@media (max-width:820px){.terms{grid-template-columns:minmax(0,1fr)}.term:nth-child(n){padding-left:0;border-left:0}}
+
+/* linha BID */
+.bid-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px}
+@media (max-width:900px){.bid-grid{grid-template-columns:minmax(0,1fr);gap:32px}}
+.bid-grid h3{font-size:1.3rem;margin-bottom:12px}
+.bid-grid p+p{margin-top:12px}
+.comp{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--bone);margin-top:18px}
+.comp li{list-style:none;display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--bone)}
+.comp .c{font-family:var(--f-head);font-size:15px;font-weight:600;color:var(--green)}
+.comp .c small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.04em}
+.flow{background:var(--bone-light);border:1px solid var(--bone);padding:22px 24px}
+.flow ol{list-style:none;counter-reset:f;display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.flow li{counter-increment:f;position:relative;padding-left:38px;font-size:14px}
+.flow li::before{content:counter(f);position:absolute;left:0;top:-3px;width:26px;height:26px;border-radius:50%;background:var(--green-deep);color:#fff;font-family:var(--f-num);font-size:13px;display:flex;align-items:center;justify-content:center}
+.sectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:44px}
+@media (max-width:900px){.sectors{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.sectors{grid-template-columns:minmax(0,1fr)}}
+.sector{border-top:3px solid var(--amber);background:var(--bone-light);padding:18px 18px 20px}
+.sector h4{font-size:1.05rem;margin-bottom:8px}
+.sector p{font-size:13.5px;color:#4a4f49}
+.callout{margin-top:36px;background:var(--green-deep);color:#fff;padding:24px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
+.callout p{color:rgba(255,255,255,.82);font-size:14.5px}
+.callout b{color:#fff}
+@media (max-width:700px){.callout{grid-template-columns:minmax(0,1fr)}}
+
+/* processo */
+.steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;border-top:2px solid var(--green-deep)}
+.step{padding:18px 14px 0 0;position:relative}
+.step .no{font-family:var(--f-num);font-size:28px;color:var(--amber);line-height:1}
+.step h4{font-size:15px;margin-top:10px}
+.step p{font-size:12.8px;color:var(--muted);margin-top:6px;line-height:1.45}
+.step .who{display:inline-block;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--green);font-weight:600;margin-top:8px}
+@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;border-top:0}.step{border-top:2px solid var(--green-deep)}}
+@media (max-width:520px){.steps{grid-template-columns:minmax(0,1fr)}}
+.tbl-wrap{overflow-x:auto;margin-top:40px;border:1px solid var(--bone);background:var(--paper)}
+table.deadlines{border-collapse:collapse;width:100%;min-width:680px;font-size:13.5px}
+table.deadlines th,table.deadlines td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--bone);vertical-align:top}
+table.deadlines thead th{background:var(--green-deep);color:#fff;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+table.deadlines td.n{font-family:var(--f-num);white-space:nowrap}
+table.deadlines tbody tr:nth-child(even){background:var(--bone-light)}
+
+/* ======== simulador (escopo .sim) ======== */
+.sim{color:var(--ink)}
+.sim .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.sim .funds{display:inline-flex;border:1px solid var(--bone);background:var(--paper);flex-wrap:wrap}
+.sim .funds button{font:500 15px var(--f-head);border:0;background:transparent;color:var(--muted);padding:10px 18px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;min-width:8.5rem;text-align:left}
+.sim .funds button small{font:400 11px var(--f-body);color:var(--muted)}
+.sim .funds button+button{border-left:1px solid var(--bone)}
+.sim .funds button[aria-pressed="true"]{background:var(--green-deep);color:#fff}
+.sim .funds button[aria-pressed="true"] small{color:rgba(255,255,255,.75)}
+.sim .grid{display:grid;grid-template-columns:minmax(0,370px) minmax(0,1fr);gap:22px;align-items:start;margin-top:22px}
+@media (max-width:900px){.sim .grid{grid-template-columns:minmax(0,1fr)}}
+.sim .panel{background:var(--paper);border:1px solid var(--bone);padding:18px}
+.sim form.panel{display:flex;flex-direction:column;gap:18px;position:sticky;top:74px}
+@media (max-width:900px){.sim form.panel{position:static}}
+.sim fieldset{border:0;display:flex;flex-direction:column;gap:10px}
+.sim legend{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600;margin-bottom:8px}
+.sim label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500}
+.sim label .hint{font-weight:400;color:var(--muted);font-size:11.5px;line-height:1.4}
+.sim select,.sim input{font:inherit;font-size:14px;color:var(--ink);background:var(--bone-light);border:1px solid var(--bone);border-radius:2px;padding:.48rem .55rem;width:100%;min-width:0}
+.sim input.num{font-family:var(--f-num)}
+.sim .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.sim .seg{display:flex;border:1px solid var(--bone)}
+.sim .seg button{flex:1;font:500 13px var(--f-body);background:var(--bone-light);color:var(--muted);border:0;padding:.45rem;cursor:pointer}
+.sim .seg button+button{border-left:1px solid var(--bone)}
+.sim .seg button[aria-pressed="true"]{background:var(--green);color:#fff}
+.sim .setor-desc{font-size:12px;color:#4d524c;background:var(--sunk);padding:.55rem .65rem;line-height:1.45}
+.sim .prio{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12.5px}
+.sim .pill{display:inline-flex;align-items:center;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+.sim .pill.p{background:var(--green-soft);color:var(--green-deep)}
+.sim .pill.d{background:var(--amber-soft);color:#8a4f05}
+.sim .pill.t{background:var(--green-deep);color:#fff}
+.sim .pill.s{background:var(--sunk);color:var(--muted)}
+.sim details.prem summary{cursor:pointer;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim details.prem[open] summary{margin-bottom:10px}
+.sim .results{display:flex;flex-direction:column;gap:18px;min-width:0}
+.sim .hero2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);padding:0;overflow:hidden}
+@media (max-width:640px){.sim .hero2{grid-template-columns:minmax(0,1fr)}}
+.sim .hero2 .rate{padding:22px;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--bone)}
+@media (max-width:640px){.sim .hero2 .rate{border-right:0;border-bottom:1px solid var(--bone)}}
+.sim .eyebrow{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim .bigrate{font-family:var(--f-num);font-size:clamp(2.2rem,5vw,3.2rem);line-height:1;color:var(--green-deep)}
+.sim .bigrate .ix{font-family:var(--f-head);font-size:.42em;color:var(--muted);margin-right:.15em}
+.sim .bigrate .pa{font-family:var(--f-head);font-size:.36em;color:var(--muted)}
+.sim .formula{font-family:var(--f-mono);font-size:12px;color:var(--muted);background:var(--sunk);padding:.5rem .6rem;overflow-x:auto;white-space:nowrap}
+.sim .formula b{color:var(--ink);font-weight:600}
+.sim .hero2 .enq{padding:22px;display:flex;flex-direction:column;gap:12px;background:var(--bone-light)}
+.sim .typegrid{display:grid;grid-template-columns:auto 1fr 1fr;font-size:12.5px;border:1px solid var(--bone);background:var(--paper)}
+.sim .typegrid div{padding:.35rem .55rem;border-top:1px solid var(--bone)}
+.sim .typegrid div:nth-child(-n+3){border-top:0;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sim .typegrid .on{background:var(--green-deep);color:#fff}
+.sim .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0}
+@media (max-width:760px){.sim .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sim .kpi{padding:14px 16px;border-left:1px solid var(--bone);display:flex;flex-direction:column;gap:3px;min-width:0}
+.sim .kpi:first-child{border-left:0}
+@media (max-width:760px){.sim .kpi:nth-child(3){border-left:0}.sim .kpi:nth-child(n+3){border-top:1px solid var(--bone)}}
+.sim .kpi .k{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mauve);font-weight:600}
+.sim .kpi .v{font-family:var(--f-num);font-size:1.3rem;color:var(--green-deep);overflow-wrap:anywhere}
+.sim .kpi .s{font-size:11.5px;color:var(--muted)}
+.sim .capbar{display:flex;height:34px;overflow:hidden;margin:10px 0 8px;background:var(--sunk)}
+.sim .capbar div{display:flex;align-items:center;justify-content:center;font:600 12px var(--f-body);color:#fff;white-space:nowrap;overflow:hidden;min-width:0}
+.sim .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted)}
+.sim .legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.sim h2{font-size:1.15rem}
+.sim .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media (max-width:760px){.sim .two{grid-template-columns:minmax(0,1fr)}}
+.sim .split{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.sim .split .line{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;border-bottom:1px dashed var(--bone);padding-bottom:6px}
+.sim .split .line:last-child{border-bottom:0}
+.sim .alerts{display:flex;flex-direction:column;gap:8px}
+.sim .alert{font-size:13px;padding:.6rem .75rem;background:var(--warn-soft);border-left:3px solid var(--warn)}
+.sim .alert.info{background:var(--green-soft);border-left-color:var(--green)}
+.sim .chartbox{overflow-x:auto}
+.sim svg text{font-family:var(--f-body);font-size:10px;fill:var(--muted)}
+.sim .tablebox{overflow-x:auto;margin-top:10px;max-height:420px;overflow-y:auto;border:1px solid var(--bone)}
+.sim table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:620px}
+.sim th,.sim td{padding:.4rem .6rem;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sim td{font-family:var(--f-num)}
+.sim th{position:sticky;top:0;background:var(--sunk);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sim th:first-child,.sim td:first-child{text-align:left}
+.sim tbody tr:nth-child(even){background:var(--bone-light)}
+.sim tbody tr.grace td{color:var(--muted)}
+.sim .secthead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.sim .muted{color:var(--muted)}
+.sim .foot{font-size:12.5px;color:var(--muted)}
+.sim .foot ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.sim-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.ack{font-size:12.5px;color:var(--muted)}
+.sim-notice{margin-top:18px;padding:14px 16px;border-left:4px solid var(--amber);background:var(--amber-soft);color:var(--green-deep);font-size:13.5px;line-height:1.5}
+.sim-notice b{font-family:var(--f-head);font-weight:600}
+
+/* avisos */
+.disclaimer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+@media (max-width:820px){.disclaimer{grid-template-columns:minmax(0,1fr)}}
+.disclaimer h3{font-size:1.15rem;margin-bottom:12px}
+.disclaimer ul{padding-left:1.1rem;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#454a44}
+.disclaimer li{max-width:68ch}
+.sources{margin-top:36px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--bone);padding-top:20px}
+.sources ul{columns:2;column-gap:40px;padding-left:1rem;margin-top:8px}
+.sources li{margin-bottom:6px;break-inside:avoid}
+@media (max-width:700px){.sources ul{columns:1}}
+footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-block:40px;font-size:13px}
+footer .container{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:flex-end}
+footer a{color:#fff}
+footer .brand{font-size:22px}
+
+/* ---- ajustes da versão concisa ---- */
+section.band{padding-block:72px}
+.hero{padding-block:76px 0}
+.hero h1{max-width:20ch}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:12.5px;color:rgba(255,255,255,.75)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block}
+.sec-head{margin-bottom:36px}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.16)}
+.role{padding:20px 22px 22px 0}
+.role+.role{padding-left:22px;border-left:1px solid rgba(255,255,255,.16)}
+.role .k{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber-soft);font-weight:600}
+.role h3{font-size:1.25rem;margin-top:6px}
+.role p{font-size:13.5px;color:rgba(255,255,255,.74);margin-top:6px}
+@media (max-width:820px){.roles{grid-template-columns:minmax(0,1fr)}.role+.role{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.16)}}
+.who-wrap{overflow-x:auto;margin-top:28px}
+table.who{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+table.who th,table.who td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.16);vertical-align:top}
+table.who thead th{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green-mid);font-weight:600}
+table.who td:first-child{font-family:var(--f-head);font-size:20px;font-weight:500;white-space:nowrap}
+table.who td small{display:block;font-family:var(--f-body);font-size:12px;color:rgba(255,255,255,.6);font-weight:400}
+table.who td{color:rgba(255,255,255,.86)}
+.cond-wrap{overflow-x:auto;border:1px solid var(--bone);background:var(--paper)}
+table.cond{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+table.cond th,table.cond td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--bone);vertical-align:top}
+table.cond tr:last-child th,table.cond tr:last-child td{border-bottom:0}
+table.cond th{width:30%;background:var(--green-deep);color:#fff;font-weight:500;font-family:var(--f-head);font-size:15px}
+table.cond td b{font-family:var(--f-num);font-weight:400;font-size:17px;color:var(--green-deep)}
+.steps5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--green-deep)}
+.steps5 .step{padding:18px 16px 0 0}
+@media (max-width:900px){.steps5{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;border-top:0}.steps5 .step{border-top:2px solid var(--green-deep)}}
+@media (max-width:520px){.steps5{grid-template-columns:minmax(0,1fr)}}
+details.more{margin-top:28px}
+details.more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--green)}
+details.more .tbl-wrap{margin-top:14px}
+.links3{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:13.5px}
+.param-status{font-size:12px;color:var(--muted);margin-top:14px}
+.weaver-role{margin-top:28px;padding:18px 22px;border-left:3px solid var(--green);background:var(--paper);font-size:14px;max-width:none}
+.disclaimer ul{font-size:13px}
+.nav .container{padding-block:8px}
+.brand{align-items:center;gap:16px}
+.brand .logo{height:44px;width:auto;display:block}
+.brand .slogan{font-family:var(--f-head);font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.72);font-weight:400;max-width:22ch;line-height:1.3}
+.logo-foot{height:46px;width:auto;display:block}
+@media (max-width:760px){.brand .logo{height:32px}.brand .slogan{font-size:11px}}
+@media (max-width:420px){.brand .slogan{display:none}}
+@media (max-width:760px){.nav{position:static}}
+.lang{display:inline-flex;gap:6px;align-items:center;font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.45)}
+.lang a,.lang b{color:rgba(255,255,255,.78);text-decoration:none;font-weight:500}
+.lang b{color:#fff;font-weight:600}
+.lang a:hover{color:#fff}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="container">
+    <a class="brand" href="#inicio" aria-label="Weaver Advisory, home"><img class="logo" src="../assets/logo.png" alt="Weaver Advisory" width="400" height="172"><span class="slogan">Bringing Investments to Emerging Markets</span></a>
+    <ul>
+      <li><a href="#projetos">Projects</a></li>
+      <li><a href="#quem">Who does what</a></li>
+      <li><a href="#condicoes">Terms</a></li>
+      <li><a href="#acesso">How to apply</a></li>
+      <li><a href="#simulador">Simulator</a></li>
+      <li class="lang" aria-label="Language"><a href="../" hreflang="pt-BR" lang="pt-BR">PT</a><span>|</span><b aria-current="true">EN</b></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="container">
+    <div class="kicker">IDB credit line · Regional Development Funds</div>
+    <h1>US$ 500 million for infrastructure in Brazil’s North, Northeast and Central-West</h1>
+    <p class="lede">The Inter-American Development Bank (IDB) will capitalize three Brazilian regional development funds, FDA, FDNE and FDCO, so they can lend long-term, local-currency (Brazilian real) credit to private companies and concessionaires. The focus is transport, logistics, water and sanitation projects, fully private or structured as public-private partnerships (PPPs), that do not reach financial close with market credit today.</p>
+    <p class="lede" style="margin-top:12px">The IDB expects the program to benefit about 2 million people, including 1.2 million with expanded access to water and sewerage.</p>
+    <div class="cta">
+      <a class="btn btn-amber" href="#simulador">Simulate a financing</a>
+      <a class="btn btn-ghost" href="#condicoes">See the terms</a>
+    </div>
+    <div class="status"><i></i><span>Approved by the IDB Board of Executive Directors. Pending final approvals in Brazil before implementation begins.</span></div>
+    <div class="facts">
+      <div class="fact"><div class="n">US$ 500M</div><div class="l">from the IDB to capitalize the three regional funds</div></div>
+      <div class="fact"><div class="n">up to 60%</div><div class="l">of infrastructure investment in priority areas, under the IDB credit line</div></div>
+      <div class="fact"><div class="n">up to 20 years</div><div class="l">of tenor for infrastructure, with a grace period and semiannual payments</div></div>
+      <div class="fact"><div class="n" id="factRate">4.4% to 11.8%</div><div class="l">per year above IPCA inflation, depending on region, sector and location</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="band white" id="projetos">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Target projects</div><h2>What the credit line finances</h2></div>
+      <p>Mid-sized projects, from concessionaires with regulated contracts or fully private sponsors. They are economically viable projects that need long tenors and lower funding costs to reach financial close.</p>
+    </div>
+    <div class="sectors" style="margin-top:0">
+      <div class="sector"><h4>Logistics and integration</h4><p>Railways, highways, logistics terminals and airport terminals.</p></div>
+      <div class="sector"><h4>River and maritime transport</h4><p>Waterways, ports and terminals; construction, renewal and retrofit of vessels.</p></div>
+      <div class="sector"><h4>Urban and electric mobility</h4><p>Transport decarbonization, electrification and fleet renewal.</p></div>
+      <div class="sector"><h4>Water and sanitation</h4><p>Concessions aimed at universal service coverage.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band dark" id="quem">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Who does what</div><h2>Regional agency, fund and operating bank</h2></div>
+      <p>The company deals with two counterparts: the regional development agency for its region and an accredited operating bank.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><div class="k">Regional development agency</div><h3>Assesses and approves</h3><p>Reviews the preliminary application, classifies the project and approves the fund’s participation.</p></div>
+      <div class="role"><div class="k">Fund</div><h3>Provides the funding</h3><p>Supplies long-term funding, now reinforced by IDB capital.</p></div>
+      <div class="role"><div class="k">Operating bank</div><h3>Lends and bears the risk</h3><p>Assesses credit, sets collateral, signs the contract, disburses and collects. Bears 100% of the credit risk.</p></div>
+    </div>
+    <div class="who-wrap">
+      <table class="who">
+        <thead><tr><th>Fund</th><th>Regional agency</th><th>Coverage</th><th>Operating banks</th></tr></thead>
+        <tbody>
+          <tr><td>FDA<small>Amazon</small></td><td>Sudam</td><td>Legal Amazon: AC, AM, AP, PA, RO, RR, TO, MT and part of MA</td><td>Banco da Amazônia and authorized, accredited financial institutions</td></tr>
+          <tr><td>FDNE<small>Northeast</small></td><td>Sudene</td><td>The nine Northeast states plus northern Minas Gerais (MG) and Espírito Santo (ES)</td><td>BNB, Banco do Brasil, BDMG, Caixa and Sicredi Evolução</td></tr>
+          <tr><td>FDCO<small>Central-West</small></td><td>Sudeco</td><td>GO, MT, MS and the Federal District (DF)</td><td>Banco do Brasil, BRDE, Caixa, Banco Genial and Sicredi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="condicoes">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Terms</div><h2>General financing terms</h2></div>
+      <p>The same for all three funds, set by Brazil’s National Monetary Council (CMN) in Resolution No. 4,960/2021.</p>
+    </div>
+    <div class="cond-wrap">
+      <table class="cond">
+        <tr><th>Fund share</th><td><b>up to 60%</b> of infrastructure investment in priority areas (50% elsewhere). Water supply and sanitation can reach 80%.</td></tr>
+        <tr><th>Sponsor equity</th><td><b>at least 20%</b> of total investment. The remainder may come from other sources.</td></tr>
+        <tr><th>Tenor</th><td><b>up to 20 years</b> for infrastructure, including the grace period. Semiannual principal and interest payments.</td></tr>
+        <tr><th>Grace period</th><td><b>up to 1 year after operations begin</b>, with capitalized interest. Construction counts within the grace period: a project with 3 years of construction may go up to 4 years without amortizing.</td></tr>
+        <tr><th>Interest rate</th><td><b id="condRate">IPCA + 4.4% to 11.8% p.a.</b> depending on region, sector and location. The real component is the fixed-rate TLP, the benchmark long-term rate published monthly in Brazil, adjusted by a regional coefficient and by project type, and locked in the month the contract is signed.</td></tr>
+        <tr><th>Collateral and risk</th><td>Set by the operating bank, which bears <b>100% of the credit risk</b>.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band white" id="acesso">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">How to apply</div><h2>From preliminary application to disbursement</h2></div>
+      <p>The company starts with the regional agency for its region and chooses an operating bank. No intermediary is required.</p>
+    </div>
+    <div class="steps5">
+      <div class="step"><div class="no">1</div><h4>Preliminary application</h4><p>Basic project data is submitted to the regional agency, which issues an eligibility certificate.</p><span class="who">Regional agency</span></div>
+      <div class="step"><div class="no">2</div><h4>Project and credit</h4><p>The bank authorizes the final project, assesses its viability and approves the credit.</p><span class="who">Operating bank</span></div>
+      <div class="step"><div class="no">3</div><h4>Fund decision</h4><p>The agency’s executive board approves the fund’s participation.</p><span class="who">Regional agency</span></div>
+      <div class="step"><div class="no">4</div><h4>Contract</h4><p>The company and the bank sign the financing agreement.</p><span class="who">Company and bank</span></div>
+      <div class="step"><div class="no">5</div><h4>Disbursements</h4><p>Released against verified progress and the sponsor’s equity contributions.</p><span class="who">Operating bank</span></div>
+    </div>
+    <div class="links3">
+      <a href="https://www.gov.br/sudam/pt-br/consulta-previa" target="_blank" rel="noopener">FDA preliminary application (Sudam, in Portuguese)</a>
+      <a href="https://www.bnb.gov.br/fdne" target="_blank" rel="noopener">FDNE (Sudene and Banco do Nordeste, in Portuguese)</a>
+      <a href="https://www.gov.br/sudeco/pt-br/assuntos/fundo-de-desenvolvimento-do-centro-oeste" target="_blank" rel="noopener">FDCO (Sudeco, in Portuguese)</a>
+    </div>
+    <details class="more">
+      <summary>See the maximum deadline for each stage, by fund</summary>
+      <div class="tbl-wrap">
+        <table class="deadlines">
+          <thead><tr><th>Stage (maximum deadline)</th><th>FDA · Sudam</th><th>FDNE · Sudene</th><th>FDCO · Sudeco</th></tr></thead>
+          <tbody>
+            <tr><td>Review of the preliminary application</td><td class="n">30 days</td><td class="n">30 days</td><td class="n">40 days</td></tr>
+            <tr><td>Validity of the eligibility certificate</td><td class="n">150 days</td><td class="n">150 days</td><td class="n">150 days</td></tr>
+            <tr><td>Bank authorization of the final project</td><td class="n">60 days</td><td class="n">30 days</td><td class="n">60 days</td></tr>
+            <tr><td>Submission of the project to the bank</td><td class="n">120 days</td><td class="n">60 days (+60)</td><td class="n">120 days</td></tr>
+            <tr><td>Review by the operating bank</td><td class="n">120 days</td><td class="n">90 days (+30)</td><td class="n">180 days</td></tr>
+            <tr><td>Regional agency decision</td><td class="n">45 days</td><td class="n">30 days</td><td class="n">40 days</td></tr>
+            <tr><td>Documents for contract signing</td><td class="n">120 days</td><td class="n">60 days (+60)</td><td class="n">120 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="band sim" id="simulador">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Simulator</div><h2>How much it costs and how much the fund finances</h2></div>
+      <p>Choose the fund, the municipality and the sector. The simulator classifies the project, calculates the rate and the financing limits with this month’s parameters. Amounts are in Brazilian reais (BRL).</p>
+    </div>
+
+    <div class="sim-top">
+      <div class="funds" role="group" aria-label="Fund">
+        <button type="button" data-fund="FDA" aria-pressed="true">FDA<small>Amazon · Sudam</small></button>
+        <button type="button" data-fund="FDNE" aria-pressed="false">FDNE<small>Northeast · Sudene</small></button>
+        <button type="button" data-fund="FDCO" aria-pressed="false">FDCO<small>Central-West · Sudeco</small></button>
+      </div>
+      <span class="ack"><span id="ackParams">Loading parameters.</span> Indicative result. <a href="#avisos">Simulation terms</a></span>
+    </div>
+    <div class="sim-notice" role="note">
+      <b>Indicative result.</b> This simulator may contain distortions and does not replace the assessment of eligibility, credit or the applicable rate. The effective rate must be confirmed with the operating banks and the competent regional development agency. <a href="#avisos">See the simulation terms.</a>
+    </div>
+
+    <div class="grid">
+      <form class="panel" id="f" autocomplete="off">
+        <fieldset>
+          <legend>Location</legend>
+          <div class="row2">
+            <label>State<select id="uf"></select></label>
+            <label>Municipality<select id="mun"></select></label>
+          </div>
+          <div class="prio" id="prioAuto"></div>
+          <label id="prioWrap">Spatial priority
+            <select id="prio">
+              <option value="1">Priority area (PNDR)</option>
+              <option value="0">Other areas</option>
+            </select>
+            <span class="hint" id="prioHint"></span>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Project sector</legend>
+          <label>Priority sector<select id="setor"></select></label>
+          <div class="setor-desc" id="setorDesc"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Amounts (BRL million)</legend>
+          <div class="row2">
+            <label>Total investment<input class="num" id="inv" type="number" min="0" step="0.1" placeholder="e.g. 250"></label>
+            <label>Fixed investment<input class="num" id="fixo" type="number" min="0" step="0.1" placeholder="e.g. 230"><span class="hint">excluding land and used assets</span></label>
+          </div>
+          <label>Amount requested from the fund<input class="num" id="pedido" type="number" min="0" step="0.1" placeholder="maximum allowed"><span class="hint">Leave blank to use the maximum limit.</span></label>
+          <div class="seg" role="group" aria-label="Project type">
+            <button type="button" data-imp="1" aria-pressed="false">New project</button>
+            <button type="button" data-imp="0" aria-pressed="false">Expansion or modernization</button>
+          </div>
+        </fieldset>
+        <details class="prem" id="prem">
+          <summary>Market assumptions</summary>
+          <fieldset>
+            <div class="row3">
+              <label>Fixed-rate TLP<input class="num" id="tlp" type="number" step="0.01"><span class="hint">% p.a.</span></label>
+              <label>CDR<input class="num" id="cdr" type="number" step="0.01" min="0" max="1"><span class="hint" id="cdrHint"></span></label>
+              <label>IPCA<input class="num" id="ipca" type="number" step="0.1"><span class="hint">% p.a., projected</span></label>
+            </div>
+            <span class="hint muted" style="font-size:11.5px">The fixed-rate TLP changes every month and the regional coefficient (CDR) every year (Decree No. 9,291/2018). Projected IPCA, Brazil’s official consumer price index, comes from the Central Bank of Brazil’s Focus survey and only affects nominal values.</span>
+          </fieldset>
+        </details>
+      </form>
+
+      <div class="results" aria-live="polite">
+        <div class="panel hero2">
+          <div class="rate">
+            <div class="eyebrow">Effective interest rate (TFD)</div>
+            <div class="bigrate"><span class="ix">IPCA +</span><span id="rate">0.00%</span> <span class="pa">p.a.</span></div>
+            <div class="formula" id="formula"></div>
+            <div class="muted" style="font-size:13px" id="rateNote"></div>
+          </div>
+          <div class="enq">
+            <div class="eyebrow">Classification</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px" id="chips"></div>
+            <div class="typegrid" id="typegrid" aria-label="Program factor table"></div>
+          </div>
+        </div>
+        <div class="panel kpis" id="kpis"></div>
+        <div class="alerts" id="alerts"></div>
+        <div class="panel foot">
+          <h2 style="color:var(--ink)">Rules applied</h2>
+          <ul id="rules"></ul>
+        </div>
+      </div>
+    </div>
+    <p class="param-status" id="paramStatus"></p>
+  </div>
+</section>
+
+<section class="band white" id="avisos">
+  <div class="container">
+    <div class="sec-head">
+      <div><div class="kicker">Disclaimers</div><h2>Simulation terms</h2></div>
+      <p>For information only. It does not replace the assessment of the regional development agencies or the operating banks.</p>
+    </div>
+    <div class="disclaimer">
+      <ul>
+        <li>Results are a simulation and do not constitute a financing offer. Payment amounts are approximate.</li>
+        <li>The rate follows current legislation and the parameters shown in the simulator. Each contract’s rate is fixed in the month the contract is signed, and the outstanding balance is indexed to IPCA inflation.</li>
+        <li>Tenor, grace period and number of installments depend on repayment capacity and on credit approval by the operating bank.</li>
+        <li>Rates, tenors and other terms may be changed by Brazil’s National Monetary Council and by the councils of the regional development agencies.</li>
+      </ul>
+      <ul>
+        <li>Contracting depends on the availability of fund resources and on compliance with regulatory requirements.</li>
+        <li>Eligibility, project type and the share limit are set by the regional development agency. The classification of FDA municipalities follows Sudam’s simulator; for FDNE and FDCO, spatial priority is a suggestion to be confirmed.</li>
+        <li>Implementation of the IDB credit line depends on the completion of approvals in Brazil.</li>
+        <li>This English version is provided for convenience. In case of any discrepancy, the Portuguese version and the official Brazilian regulations prevail.</li>
+      </ul>
+    </div>
+    <p class="weaver-role">Weaver Advisory is a consultant to the IDB in the preparation of this operation. We map potentially eligible projects and bottlenecks in access to credit, to support process improvements with the regional development agencies and the operating banks. Interested companies should contact the regional development agency for their region and an accredited operating bank directly.</p>
+    <div class="sources">
+      <b>Sources</b>
+      <ul>
+        <li><a href="https://www.iadb.org/en/news/idb-support-infrastructure-investments-brazils-north-northeast-and-central-west-regions" target="_blank" rel="noopener">IDB, operation announcement</a></li>
+        <li><a href="https://www.bcb.gov.br/content/estabilidadefinanceira/especialnor/Resolu%C3%A7%C3%A3o4960.pdf" target="_blank" rel="noopener">CMN Resolution No. 4,960/2021 (in Portuguese)</a></li>
+        <li><a href="https://investimentos.sudam.gov.br/simulador-fda/" target="_blank" rel="noopener">Sudam, FDA simulator (in Portuguese)</a></li>
+        <li><a href="https://investimentos.sudam.gov.br/wp-content/uploads/2025/04/Resolucao_CONDEL_82_De_16122019.pdf" target="_blank" rel="noopener">FDA regulation, Condel/Sudam Resolution No. 82/2019 (in Portuguese)</a></li>
+        <li><a href="https://www.bnb.gov.br/fdne" target="_blank" rel="noopener">Banco do Nordeste, FDNE (in Portuguese)</a></li>
+        <li><a href="https://www.gov.br/sudeco/pt-br/assuntos/fundo-de-desenvolvimento-do-centro-oeste" target="_blank" rel="noopener">Sudeco, FDCO (in Portuguese)</a></li>
+        <li><a href="https://www2.camara.leg.br/legin/fed/decret/2018/decreto-9291-21-fevereiro-2018-786186-normaatualizada-pe.html" target="_blank" rel="noopener">Decree No. 9,291/2018, regional coefficient (in Portuguese)</a></li>
+        <li><a href="https://www.bcb.gov.br/en/publications/focus" target="_blank" rel="noopener">Central Bank of Brazil, Focus survey</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <img class="logo logo-foot" src="../assets/logo.png" alt="Weaver Advisory" width="400" height="172">
+      <p style="margin-top:10px">Bringing Investments to Emerging Markets</p>
+    </div>
+    <div style="text-align:right">
+      <p>Contact: <span style="color:#fff;user-select:all">info@weaveradvisory.com</span></p>
+      <p><a href="https://www.weaveradvisory.com" target="_blank" rel="noopener">weaveradvisory.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/sim.js"></script>
+<script>
+  // rate range (hero and terms table) from this month's parameters
+  document.addEventListener('sim:ready', function(e){
+    try{
+      const p = e.detail, tlp = p.tlp_pre.valor/100, c = p.cdr;
+      const cdrs = [c.FDA, c.FDNE, c.FDCO].filter(isFinite);
+      const min = Math.min(...cdrs)*0.85*tlp, max = Math.max(...cdrs)*1.45*tlp;
+      const f = x => (x*100).toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+      document.getElementById('factRate').textContent = f(min) + ' to ' + f(max);
+      document.getElementById('condRate').textContent = 'IPCA + ' + f(min) + ' to ' + f(max) + ' p.a.';
+    }catch(err){}
+  });
+</script>
+</body>
+</html>
